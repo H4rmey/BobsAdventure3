@@ -8,6 +8,8 @@ public class Player : GridObject
 
 	public	Camera		cam;
 
+    public GameObject   gridObjectToInstantiate;
+
     //sprites
     private     SpriteRenderer  spriteRenderer;
     public      Sprite[]        sprites;

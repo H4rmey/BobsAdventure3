@@ -18,7 +18,7 @@ public class NPC : Interactable
     {
         gridHandler = GridHandler.Instance;
 
-        gridHandler.SetCell((int)position.x, (int)position.y, gridObjectToInstantiate);
+        gridHandler.SetCell((int)position.x, (int)position.y, this.gameObject);
 
         GetRandomTasks();
 
@@ -37,7 +37,7 @@ public class NPC : Interactable
 
                 MoveNPC(new Vector2(directionX, 0));
             }
-            if (position.y != aPosition.y)
+            else if (position.y != aPosition.y)
             {
                 int directionY = harmClamp((int)aPosition.y - (int)position.y);
 

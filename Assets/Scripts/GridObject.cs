@@ -6,7 +6,5 @@ public class GridObject : MonoBehaviour
 
 	public	GridObjectData	objectData;
 
-    public  GameObject      gridObjectToInstantiate;
-
     public  GridHandler     gridHandler;
 }
