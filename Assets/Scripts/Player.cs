@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,7 +12,12 @@ public class Player : MonoBehaviour
 
 	public	Camera		cam;
 
-	[Header("KeyBinds")]
+    //sprites
+    private     SpriteRenderer  sprite;
+    public      Sprite[]        sprites;
+    private     bool            spriteId;
+
+    [Header("KeyBinds")]
 	public	KeyCode		keyLeft				= KeyCode.LeftArrow;
 	public	KeyCode		keyRight			= KeyCode.RightArrow;
 	public	KeyCode		keyUp				= KeyCode.UpArrow;
@@ -21,11 +27,11 @@ public class Player : MonoBehaviour
 	
 	private	GameObject	nearestInteractable;
 
-
-
 	private void Start()
 	{
 		cam = Camera.main;
+
+        sprite = gridHandler.GetCell((int)position.x, (int)position.y).GetComponentInChildren<SpriteRenderer>();
 
 		StartCoroutine("InputHandling");
 		StartCoroutine("MoveCamera");
@@ -35,12 +41,38 @@ public class Player : MonoBehaviour
 	{
 		while(true)
 		{
-			if (Input.GetKeyDown(keyLeft))          MovePlayer(new Vector2(-1, 0));
-			else if (Input.GetKeyDown(keyRight))    MovePlayer(new Vector2(1, 0));
-			else if (Input.GetKeyDown(keyUp))       MovePlayer(new Vector2(0, 1));
-			else if (Input.GetKeyDown(keyDown))     MovePlayer(new Vector2(0, -1));
+			if (Input.GetKeyDown(keyLeft))
+            {
+                MovePlayer(new Vector2(-1, 0));
+
+                sprite.sprite = sprites[0];
+                spriteId = !spriteId;
+            }
+			else if (Input.GetKeyDown(keyRight))
+            {
+                MovePlayer(new Vector2(1, 0));
+
+                sprite.sprite = sprites[0];
+                spriteId = !spriteId;
+            }
+			else if (Input.GetKeyDown(keyUp))
+            {
+                MovePlayer(new Vector2(0, 1));
+
+                sprite.sprite = sprites[1];
+                spriteId = !spriteId;
+            }
+			else if (Input.GetKeyDown(keyDown))
+            {
+                MovePlayer(new Vector2(0, -1));
+
+                sprite.sprite = sprites[1];
+                spriteId = !spriteId;
+            }
 
 			if (Input.GetKeyDown(keyInteract)) Interact();
+
+            Debug.Log(Convert.ToInt32(spriteId));
 
 			yield return null;
 		}

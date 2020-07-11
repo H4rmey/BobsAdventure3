@@ -153,8 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318c13a9e425146439d79427ebddaed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: {x: 8, y: 12}
-  isActive: 0
 --- !u!114 &268218238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,8 +165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a5a2f6f7f36ed34382e3868e472ed84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: {x: 6, y: 15}
-  isActive: 0
 --- !u!114 &268218239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,8 +177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155e1230e2a2e5547acfc5bf713446fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: {x: 5, y: 7}
-  isActive: 0
 --- !u!114 &268218241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,8 +189,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 881ee92693f29b742aeacc957669e25b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: {x: 14, y: 13}
-  isActive: 0
 --- !u!4 &268218242
 Transform:
   m_ObjectHideFlags: 0
@@ -245,10 +237,15 @@ MonoBehaviour:
   position: {x: 3, y: 3}
   cameraOffset: -10
   gridHandler: {fileID: 712385432}
+  cam: {fileID: 0}
+  sprites:
+  - {fileID: 21300000, guid: b0e188608b083c64ab30993294202a3a, type: 3}
+  - {fileID: 21300000, guid: 6b6e4daa07ea49946a251475a62c82a1, type: 3}
   keyLeft: 276
   keyRight: 275
   keyUp: 273
   keyDown: 274
+  keyInteract: 101
 --- !u!4 &712385431
 Transform:
   m_ObjectHideFlags: 0
@@ -331,7 +328,7 @@ MonoBehaviour:
     - {fileID: 6489837636492172424, guid: 7dc4069e5c6d02f49b2cfaaf985da18e, type: 3}
     - {fileID: 0}
     - {fileID: 0}
-    - {fileID: 6489837636492172424, guid: 7dc4069e5c6d02f49b2cfaaf985da18e, type: 3}
+    - {fileID: 6489837636492172424, guid: 909e6f95543d3134caf2ec86d2f1071f, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -563,7 +560,6 @@ MonoBehaviour:
   position: {x: 12, y: 3}
   grid: {fileID: 712385432}
   tasksQueue: []
-  taskManager: {fileID: 268218236}
 --- !u!1 &876458887
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,7 +775,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12.465843
+  orthographic size: 3.05
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
