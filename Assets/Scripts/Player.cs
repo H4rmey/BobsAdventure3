@@ -4,40 +4,50 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-	public	int			xPosition;
-	public	int			yPosition;
+	public	Vector2		position;
 
 	public	GridHandler	gridHandler;
 
-	private void Update()
+	[Header("KeyBinds")]
+	public	KeyCode	keyLeft			= KeyCode.LeftArrow;
+	public	KeyCode	keyRight		= KeyCode.RightArrow;
+	public	KeyCode	keyUp			= KeyCode.UpArrow;
+	public	KeyCode	keyDown			= KeyCode.DownArrow;
+
+	private void Start()
 	{
-		if (Input.GetKeyDown(KeyCode.LeftArrow))
+		StartCoroutine("InputHandling");
+		StartCoroutine("MoveCamera");
+	}
+
+	private IEnumerator InputHandling()
+	{
+		while(true)
 		{
-			if (gridHandler.MoveCell(xPosition, yPosition, xPosition - 1, yPosition))
-			{
-				--xPosition;
-			}
+			if (Input.GetKeyDown(keyLeft)) MovePlayer(new Vector2(-1, 0));
+			else if (Input.GetKeyDown(keyRight)) MovePlayer(new Vector2(1, 0));
+			else if (Input.GetKeyDown(keyUp)) MovePlayer(new Vector2(0, 1));
+			else if (Input.GetKeyDown(keyDown)) MovePlayer(new Vector2(0, -1));
+
+			yield return null;
 		}
-		if (Input.GetKeyDown(KeyCode.RightArrow))
+	}
+
+	private IEnumerator MoveCamera()
+	{
+		Camera cam = Camera.main;
+		while (true)
 		{
-			if (gridHandler.MoveCell(xPosition, yPosition, xPosition + 1, yPosition))
-			{
-				++xPosition;
-			}
+			cam.transform.position = new Vector2(position.x * GridHandler.cellSize, position.y * GridHandler.cellSize);
+			yield return null;
 		}
-		if (Input.GetKeyDown(KeyCode.UpArrow))
+	}
+
+	private void MovePlayer(Vector2 aDirection)
+	{
+		if (gridHandler.MoveCell((int)position.x, (int)position.y, (int)(position.x + aDirection.x), (int)(position.y + aDirection.y)))
 		{
-			if (gridHandler.MoveCell(xPosition, yPosition, xPosition, yPosition + 1))
-			{
-				++yPosition;
-			}
-		}
-		if (Input.GetKeyDown(KeyCode.DownArrow))
-		{
-			if (gridHandler.MoveCell(xPosition, yPosition, xPosition, yPosition - 1))
-			{
-				--yPosition;
-			}
+			position += aDirection;
 		}
 	}
 }

@@ -2,8 +2,7 @@
 
 public class GridObject : MonoBehaviour
 {
-	public	int				xPosition;
-	public	int				yPosition;
+	public	Vector2			position;
 
 	public	GridObjectData	objectData;   
 }
