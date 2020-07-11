@@ -9,13 +9,13 @@ public class BaseTask : MonoBehaviour
 	public bool			destinationIsSelf	= false;
 
     public Vector2      destination;
-    public bool         isActive;      //override for the completion of the task
+    public bool         isActive			= true;      //override for the completion of the task
 
-	private void Start()
+	private void Awake()
 	{
 		if (destinationIsSelf)
 		{
-			destination = GetComponent<GridObject>().position;
+			destination = transform.position / GridHandler.cellSize;
 		}
 	}
 }
