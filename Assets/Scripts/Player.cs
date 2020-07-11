@@ -15,7 +15,8 @@ public class Player : MonoBehaviour
     //sprites
     private     SpriteRenderer  sprite;
     public      Sprite[]        sprites;
-    private     bool            spriteId;
+    private     bool            spriteId = false;
+    private     bool            spriteFlip = false;
 
     [Header("KeyBinds")]
 	public	KeyCode		keyLeft				= KeyCode.LeftArrow;
@@ -31,48 +32,38 @@ public class Player : MonoBehaviour
 	{
 		cam = Camera.main;
 
-        sprite = gridHandler.GetCell((int)position.x, (int)position.y).GetComponentInChildren<SpriteRenderer>();
-
 		StartCoroutine("InputHandling");
 		StartCoroutine("MoveCamera");
 	}
 
 	private IEnumerator InputHandling()
-	{
-		while(true)
-		{
-			if (Input.GetKeyDown(keyLeft))
+    {
+        while (true)
+        {
+            sprite = gridHandler.GetCell((int)position.x, (int)position.y).GetComponentInChildren<SpriteRenderer>();
+
+            if (Input.GetKeyDown(keyLeft))
             {
                 MovePlayer(new Vector2(-1, 0));
-
-                sprite.sprite = sprites[0];
-                spriteId = !spriteId;
+                spriteFlip = true;
             }
 			else if (Input.GetKeyDown(keyRight))
             {
                 MovePlayer(new Vector2(1, 0));
-
-                sprite.sprite = sprites[0];
-                spriteId = !spriteId;
+                spriteFlip = false;
             }
 			else if (Input.GetKeyDown(keyUp))
             {
                 MovePlayer(new Vector2(0, 1));
-
-                sprite.sprite = sprites[1];
-                spriteId = !spriteId;
+                spriteFlip = !spriteFlip;
             }
 			else if (Input.GetKeyDown(keyDown))
             {
                 MovePlayer(new Vector2(0, -1));
-
-                sprite.sprite = sprites[1];
-                spriteId = !spriteId;
+                spriteFlip = !spriteFlip;
             }
 
 			if (Input.GetKeyDown(keyInteract)) Interact();
-
-            Debug.Log(Convert.ToInt32(spriteId));
 
 			yield return null;
 		}
@@ -94,9 +85,14 @@ public class Player : MonoBehaviour
 		if (gridHandler.MoveCell((int)position.x, (int)position.y, (int)(position.x + aDirection.x), (int)(position.y + aDirection.y)))
 		{
 			position += aDirection;
-		}
 
-		CheckInteraction(position + aDirection);
+            sprite.sprite = sprites[Convert.ToInt32(spriteId)];
+            spriteId = !spriteId;
+            sprite.flipX = spriteFlip;
+        }
+
+
+        CheckInteraction(position + aDirection);
 	}
 
 	#endregion
