@@ -35,36 +35,37 @@ public class Player : GridObject
 
 		cam                 = Camera.main;
         interactionText     = GetComponentInChildren<Text>();
-        type                = GridObjectType.PLAYER;
         hasLetter           = true;
 
         StartCoroutine("InputHandling");
 		StartCoroutine("MoveCamera");
 	}
 
-	private IEnumerator InputHandling()
+    public override GridObjectType GetGridType() { return GridObjectType.PLAYER; }
+
+    private IEnumerator InputHandling()
     {
         while (true)
         {
             if (Input.GetKeyDown(keyLeft))
             {
-                MovePlayer(new Vector2(-1, 0));
                 spriteFlip = true;
+                MovePlayer(new Vector2(-1, 0));
             }
 			else if (Input.GetKeyDown(keyRight))
             {
-                MovePlayer(new Vector2(1, 0));
                 spriteFlip = false;
+                MovePlayer(new Vector2(1, 0));
             }
 			else if (Input.GetKeyDown(keyUp))
             {
-                MovePlayer(new Vector2(0, 1));
                 spriteFlip = !spriteFlip;
+                MovePlayer(new Vector2(0, 1));
             }
 			else if (Input.GetKeyDown(keyDown))
             {
-                MovePlayer(new Vector2(0, -1));
                 spriteFlip = !spriteFlip;
+                MovePlayer(new Vector2(0, -1));
             }
 
 			if (Input.GetKeyDown(keyInteract)) pInteract();
@@ -91,8 +92,8 @@ public class Player : GridObject
 			position += aDirection;
 
             spriteRenderer          = gridHandler.GetCell((int)position.x, (int)position.y).GetComponentInChildren<SpriteRenderer>();
-            spriteRenderer.sprite   = sprites[Convert.ToInt32(spriteId)];
             spriteId                = !spriteId;
+            spriteRenderer.sprite   = sprites[Convert.ToInt32(spriteId)];
             spriteRenderer.flipX    = spriteFlip;
         }
 
@@ -115,7 +116,7 @@ public class Player : GridObject
 				nearestInteractable = objectNextPlayer;
 
                 //Interaction Text
-                if (hasLetter && objectNextPlayer.GetComponent<GridObject>().type == GridObjectType.NPC)
+                if (hasLetter && objectNextPlayer.GetComponent<GridObject>().GetGridType() == GridObjectType.NPC)
                 {
                     interactionText.text = "Give Letter: <E>";
                 }
