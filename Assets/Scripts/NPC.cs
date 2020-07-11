@@ -3,12 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC : MonoBehaviour
+public class NPC : Interactable
 {
-    public Vector2      position;
-
-    public GridHandler  grid;
-
     public List<BaseTask>   tasksQueue;
 
     //sprites
@@ -20,7 +16,9 @@ public class NPC : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        grid = GetComponent<GridHandler>();
+        gridHandler = GridHandler.Instance;
+
+        gridHandler.SetCell((int)position.x, (int)position.y, gridObjectToInstantiate);
 
         GetRandomTasks();
 
@@ -54,11 +52,11 @@ public class NPC : MonoBehaviour
 
     private bool MoveNPC(Vector2 aDirection)
     {
-        if (grid.MoveCell((int)position.x, (int)position.y, (int)(position.x + aDirection.x), (int)(position.y + aDirection.y)))
+        if (gridHandler.MoveCell((int)position.x, (int)position.y, (int)(position.x + aDirection.x), (int)(position.y + aDirection.y)))
         {
             position += aDirection;
 
-            spriteRenderer          = grid.GetCell((int)position.x, (int)position.y).GetComponentInChildren<SpriteRenderer>();
+            spriteRenderer          = gridHandler.GetCell((int)position.x, (int)position.y).GetComponentInChildren<SpriteRenderer>();
             spriteRenderer.sprite   = sprites[Convert.ToInt32(spriteId)];
             spriteRenderer.flipX    = !spriteFlip;
 

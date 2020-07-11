@@ -2,13 +2,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : GridObject
 {
-	public	Vector2		position;
-
 	public	int			cameraOffset	= -10;
-
-	public	GridHandler	gridHandler;
 
 	public	Camera		cam;
 
@@ -29,10 +25,14 @@ public class Player : MonoBehaviour
 	private	GameObject	nearestInteractable;
 
 	private void Start()
-	{
-		cam = Camera.main;
+    {
+        gridHandler = GridHandler.Instance;
 
-		StartCoroutine("InputHandling");
+        cam = Camera.main;
+
+        gridHandler.InitCell((int)position.x, (int)position.y, gridObjectToInstantiate);
+
+        StartCoroutine("InputHandling");
 		StartCoroutine("MoveCamera");
 	}
 

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 762978d790457914a8a081d0eb62b220, type: 3}
   m_Name: HungryBoi
   m_EditorClassIdentifier: 
-  destination: {x: 5, y: 5}
+  destination: {x: 10, y: 8}
   isActive: 0

@@ -3,30 +3,43 @@ using UnityEngine;
 
 public class GridHandler : MonoBehaviour
 {
+    public static GridHandler   Instance;
+
 	public	static	int			amountCols	= 16;
 	public	static	int			amountRows	= 16;
 	public	static	int			cellSize	= 1;
 
 	public			GridRow[]	grid		= new GridRow[amountRows];
 
-	private void Start()
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.Log("AAAAAAAAAAAAAAAA mroe the n one ainstance");
+            return;
+        }
+        Instance = this;
+    }
+
+    private void Start()
 	{
 		for (int x = 0; x < amountCols; x++)
 		{
 			for (int y = 0; y < amountRows; y++)
 			{
-				InitCell(x, y);
+				InitCell(x, y, null);
 			}
 		}
 	}
 
-	private void InitCell(int aXPos, int aYPos)
+	public void InitCell(int aXPos, int aYPos, GameObject aGridPrefab)
 	{
-		GameObject gridPrefab = grid[aYPos].row[aXPos];
+        if (aGridPrefab == null)
+		    aGridPrefab = grid[aYPos].row[aXPos];
 
-		if (gridPrefab == default) return;
+		if (aGridPrefab == default) return;
 
-		GameObject gridObject			= Instantiate(gridPrefab);
+		GameObject gridObject			= Instantiate(aGridPrefab);
 		grid[aYPos].row[aXPos]			= gridObject;
 		gridObject.transform.position	= new Vector2(aXPos * cellSize, aYPos * cellSize);
 	}
