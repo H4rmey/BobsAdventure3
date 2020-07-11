@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4943883826980527060}
   m_Layer: 0
   m_Name: Desk_1.1
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,5 +175,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
-  objectData: {fileID: 0}
   gridHandler: {fileID: 0}

@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[CreateAssetMenu(fileName = "Task", menuName = "Task/Task", order = 1)]
-public class BaseTask : ScriptableObject
+public class BaseTask : MonoBehaviour
 {
     private GameObject  gameManager;
     private GridHandler grid;

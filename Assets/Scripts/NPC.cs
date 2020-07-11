@@ -28,7 +28,7 @@ public class NPC : Interactable
         {
             if (position.x != aPosition.x)
             {
-                int directionX = harmClamp((int)aPosition.x - (int)position.x);
+                int directionX = HarmClamp((int)aPosition.x - (int)position.x);
 
                 spriteId = !spriteId;
 
@@ -36,7 +36,7 @@ public class NPC : Interactable
             }
             else if (position.y != aPosition.y)
             {
-                int directionY = harmClamp((int)aPosition.y - (int)position.y);
+                int directionY = HarmClamp((int)aPosition.y - (int)position.y);
 
                 spriteFlip = !spriteFlip;
 
@@ -62,7 +62,7 @@ public class NPC : Interactable
         return false;
     }
 
-    private int harmClamp(int value)
+    private int HarmClamp(int value)
     {
         if (value < 0)
             return -1;
