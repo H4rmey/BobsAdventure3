@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Prop : Interactable
 {
-	public override void Interact()
+	public override void Interact(GridObject aGridObject)
 	{
 		
 	}

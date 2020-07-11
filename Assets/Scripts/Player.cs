@@ -12,7 +12,6 @@ public class Player : GridObject
     public GameObject   gridObjectToInstantiate;
 
     private Text        interactionText;
-    private bool        hasLetter = true;
 
     //sprites
     private     SpriteRenderer  spriteRenderer;
@@ -34,8 +33,10 @@ public class Player : GridObject
 	{
 		base.Initialize();
 
-		cam = Camera.main;
-        interactionText = GetComponentInChildren<Text>();
+		cam                 = Camera.main;
+        interactionText     = GetComponentInChildren<Text>();
+        type                = GridObjectType.PLAYER;
+        hasLetter           = true;
 
         StartCoroutine("InputHandling");
 		StartCoroutine("MoveCamera");
@@ -66,7 +67,7 @@ public class Player : GridObject
                 spriteFlip = !spriteFlip;
             }
 
-			if (Input.GetKeyDown(keyInteract)) Interact();
+			if (Input.GetKeyDown(keyInteract)) pInteract();
 
 			yield return null;
 		}
@@ -113,10 +114,15 @@ public class Player : GridObject
 			{
 				nearestInteractable = objectNextPlayer;
 
-                if (hasLetter)
+                //Interaction Text
+                if (hasLetter && objectNextPlayer.GetComponent<GridObject>().type == GridObjectType.NPC)
+                {
                     interactionText.text = "Give Letter: <E>";
+                }
                 else
+                {
                     interactionText.text = "Interact with " + objectNextPlayer.name + ": <E>"; //TODO: update name giving
+                }
 
                 return;
 			}
@@ -129,12 +135,12 @@ public class Player : GridObject
         nearestInteractable = default;
 	}
 
-	private void Interact()
+	private void pInteract()
 	{
 		if (nearestInteractable == default) return;
 
-		nearestInteractable.GetComponent<Interactable>().Interact();
-	}
+		nearestInteractable.GetComponent<Interactable>().Interact(this);
+    }
 
 	#endregion
 }
