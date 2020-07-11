@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 	public	Camera		cam;
 
     //sprites
-    private     SpriteRenderer  sprite;
+    private     SpriteRenderer  spriteRenderer;
     public      Sprite[]        sprites;
     private     bool            spriteId = false;
     private     bool            spriteFlip = false;
@@ -40,8 +40,6 @@ public class Player : MonoBehaviour
     {
         while (true)
         {
-            sprite = gridHandler.GetCell((int)position.x, (int)position.y).GetComponentInChildren<SpriteRenderer>();
-
             if (Input.GetKeyDown(keyLeft))
             {
                 MovePlayer(new Vector2(-1, 0));
@@ -86,9 +84,10 @@ public class Player : MonoBehaviour
 		{
 			position += aDirection;
 
-            sprite.sprite = sprites[Convert.ToInt32(spriteId)];
-            spriteId = !spriteId;
-            sprite.flipX = spriteFlip;
+            spriteRenderer          = gridHandler.GetCell((int)position.x, (int)position.y).GetComponentInChildren<SpriteRenderer>();
+            spriteRenderer.sprite   = sprites[Convert.ToInt32(spriteId)];
+            spriteId                = !spriteId;
+            spriteRenderer.flipX    = spriteFlip;
         }
 
 
