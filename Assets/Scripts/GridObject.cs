@@ -4,8 +4,6 @@ public class GridObject : MonoBehaviour
 {
 	public	Vector2			position;
 
-	public	GridObjectData	objectData;
-
     public  GridHandler     gridHandler;
 
 	private void Start()
