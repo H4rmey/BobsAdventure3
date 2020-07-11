@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: -1559808853
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cfc184b8ba644cc499346d9fbf7bce3f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f791fcc86e4fd9f4daba21348306777c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4640078918277669270}
   - component: {fileID: 4943883826980527060}
   m_Layer: 0
-  m_Name: Desk_1.2
+  m_Name: CoffeeMachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
