@@ -132,6 +132,8 @@ GameObject:
   - component: {fileID: 712385431}
   - component: {fileID: 712385432}
   - component: {fileID: 712385430}
+  - component: {fileID: 712385434}
+  - component: {fileID: 712385433}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -154,10 +156,12 @@ MonoBehaviour:
   position: {x: 3, y: 3}
   cameraOffset: -10
   gridHandler: {fileID: 712385432}
+  cam: {fileID: 0}
   keyLeft: 276
   keyRight: 275
   keyUp: 273
   keyDown: 274
+  keyInteract: 101
 --- !u!4 &712385431
 Transform:
   m_ObjectHideFlags: 0
@@ -237,9 +241,13 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
   - row:
+    - {fileID: 0}
+    - {fileID: 6489837636492172424, guid: ba9ecf91decdb624a83ab2a817aa184b, type: 3}
+    - {fileID: 0}
     - {fileID: 6489837636492172424, guid: 7dc4069e5c6d02f49b2cfaaf985da18e, type: 3}
     - {fileID: 0}
     - {fileID: 0}
+    - {fileID: 0}
     - {fileID: 6489837636492172424, guid: 7dc4069e5c6d02f49b2cfaaf985da18e, type: 3}
     - {fileID: 0}
     - {fileID: 0}
@@ -249,10 +257,6 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
   - row:
     - {fileID: 0}
     - {fileID: 0}
@@ -457,6 +461,32 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
+--- !u!114 &712385433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712385429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47f0f6193339b654d834ac0448821194, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scene: 
+--- !u!114 &712385434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712385429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47f0f6193339b654d834ac0448821194, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scene: 
 --- !u!1 &1201532124
 GameObject:
   m_ObjectHideFlags: 0

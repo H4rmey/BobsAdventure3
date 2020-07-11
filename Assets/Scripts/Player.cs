@@ -9,14 +9,24 @@ public class Player : MonoBehaviour
 
 	public	GridHandler	gridHandler;
 
+	public	Camera		cam;
+
 	[Header("KeyBinds")]
-	public	KeyCode	keyLeft				= KeyCode.LeftArrow;
-	public	KeyCode	keyRight			= KeyCode.RightArrow;
-	public	KeyCode	keyUp				= KeyCode.UpArrow;
-	public	KeyCode	keyDown				= KeyCode.DownArrow;
+	public	KeyCode		keyLeft				= KeyCode.LeftArrow;
+	public	KeyCode		keyRight			= KeyCode.RightArrow;
+	public	KeyCode		keyUp				= KeyCode.UpArrow;
+	public	KeyCode		keyDown				= KeyCode.DownArrow;
+
+	public	KeyCode		keyInteract			= KeyCode.E;
+	
+	private	GameObject	nearestInteractable;
+
+
 
 	private void Start()
 	{
+		cam = Camera.main;
+
 		StartCoroutine("InputHandling");
 		StartCoroutine("MoveCamera");
 	}
@@ -30,13 +40,16 @@ public class Player : MonoBehaviour
 			else if (Input.GetKeyDown(keyUp)) MovePlayer(new Vector2(0, 1));
 			else if (Input.GetKeyDown(keyDown)) MovePlayer(new Vector2(0, -1));
 
+			if (Input.GetKeyDown(keyInteract)) Interact();
+
 			yield return null;
 		}
 	}
 
+	#region Movement
+
 	private IEnumerator MoveCamera()
 	{
-		Camera cam = Camera.main;
 		while (true)
 		{
 			cam.transform.position = new Vector3(position.x * GridHandler.cellSize, position.y * GridHandler.cellSize, cameraOffset);
@@ -50,5 +63,36 @@ public class Player : MonoBehaviour
 		{
 			position += aDirection;
 		}
+
+		CheckInteraction(position + aDirection);
 	}
+
+	#endregion
+
+	#region Interaction
+
+	private void CheckInteraction(Vector2 aPosition)
+	{
+		if (gridHandler.CellIsOccupied((int)aPosition.x, (int)aPosition.y))
+		{
+			GameObject objectNextPlayer = gridHandler.GetCell((int)aPosition.x, (int)aPosition.y);
+		
+			if (objectNextPlayer.CompareTag("Interactable"))
+			{
+				nearestInteractable = objectNextPlayer;
+				return;
+			}
+		}
+
+		nearestInteractable = default;
+	}
+
+	private void Interact()
+	{
+		if (nearestInteractable == default) return;
+
+		nearestInteractable.GetComponent<Interactable>().Interact();
+	}
+
+	#endregion
 }
