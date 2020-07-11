@@ -48,23 +48,23 @@ public class Player : GridObject
         {
             if (Input.GetKeyDown(keyLeft))
             {
-                MovePlayer(new Vector2(-1, 0));
                 spriteFlip = true;
+                MovePlayer(new Vector2(-1, 0));
             }
 			else if (Input.GetKeyDown(keyRight))
             {
-                MovePlayer(new Vector2(1, 0));
                 spriteFlip = false;
+                MovePlayer(new Vector2(1, 0));
             }
 			else if (Input.GetKeyDown(keyUp))
             {
-                MovePlayer(new Vector2(0, 1));
                 spriteFlip = !spriteFlip;
+                MovePlayer(new Vector2(0, 1));
             }
 			else if (Input.GetKeyDown(keyDown))
             {
-                MovePlayer(new Vector2(0, -1));
                 spriteFlip = !spriteFlip;
+                MovePlayer(new Vector2(0, -1));
             }
 
 			if (Input.GetKeyDown(keyInteract)) pInteract();
@@ -91,8 +91,8 @@ public class Player : GridObject
 			position += aDirection;
 
             spriteRenderer          = gridHandler.GetCell((int)position.x, (int)position.y).GetComponentInChildren<SpriteRenderer>();
-            spriteRenderer.sprite   = sprites[Convert.ToInt32(spriteId)];
             spriteId                = !spriteId;
+            spriteRenderer.sprite   = sprites[Convert.ToInt32(spriteId)];
             spriteRenderer.flipX    = spriteFlip;
         }
 
