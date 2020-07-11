@@ -1,18 +1,19 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
 	public	Vector2		position;
 
+	public	int			cameraOffset	= -10;
+
 	public	GridHandler	gridHandler;
 
 	[Header("KeyBinds")]
-	public	KeyCode	keyLeft			= KeyCode.LeftArrow;
-	public	KeyCode	keyRight		= KeyCode.RightArrow;
-	public	KeyCode	keyUp			= KeyCode.UpArrow;
-	public	KeyCode	keyDown			= KeyCode.DownArrow;
+	public	KeyCode	keyLeft				= KeyCode.LeftArrow;
+	public	KeyCode	keyRight			= KeyCode.RightArrow;
+	public	KeyCode	keyUp				= KeyCode.UpArrow;
+	public	KeyCode	keyDown				= KeyCode.DownArrow;
 
 	private void Start()
 	{
@@ -38,7 +39,7 @@ public class Player : MonoBehaviour
 		Camera cam = Camera.main;
 		while (true)
 		{
-			cam.transform.position = new Vector2(position.x * GridHandler.cellSize, position.y * GridHandler.cellSize);
+			cam.transform.position = new Vector3(position.x * GridHandler.cellSize, position.y * GridHandler.cellSize, cameraOffset);
 			yield return null;
 		}
 	}
