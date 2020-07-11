@@ -397,40 +397,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1df5ceb2ef75c684d8833f3230bfce63, type: 3}
---- !u!1 &410340813 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6489837636492172424, guid: 909e6f95543d3134caf2ec86d2f1071f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1640861881}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &410340816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 410340813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eb2930f57c8bc340a080808bc31a261, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  position: {x: 0, y: 0}
-  gridHandler: {fileID: 0}
-  type: 0
-  hasLetter: 0
-  cameraOffset: -10
-  cam: {fileID: 0}
-  gridObjectToInstantiate: {fileID: 6489837636492172424, guid: 909e6f95543d3134caf2ec86d2f1071f,
-    type: 3}
-  sprites:
-  - {fileID: 21300000, guid: b0e188608b083c64ab30993294202a3a, type: 3}
-  - {fileID: 21300000, guid: 6b6e4daa07ea49946a251475a62c82a1, type: 3}
-  keyLeft: 276
-  keyRight: 275
-  keyUp: 273
-  keyDown: 274
-  keyInteract: 101
 --- !u!1001 &580849665
 PrefabInstance:
   m_ObjectHideFlags: 0
