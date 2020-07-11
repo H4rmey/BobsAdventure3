@@ -18,14 +18,14 @@ public class NPC : Interactable
 	{
 		base.Initialize();
 
-        type = GridObjectType.NPC;
-
 		GetRandomTasks();
 
         StartCoroutine("MoveToPosition", tasksQueue[0].destination);
 	}
 
-	private IEnumerator MoveToPosition(Vector2 aPosition)
+    public override GridObjectType GetGridType() { return GridObjectType.NPC; }
+
+    private IEnumerator MoveToPosition(Vector2 aPosition)
     {
         while (true)
         {
@@ -93,7 +93,7 @@ public class NPC : Interactable
 
     public override void Interact(GridObject aGridObject)
     {
-        if (!hasLetter)
+        if (!hasLetter && aGridObject.hasLetter)
         {
             hasLetter               = true;
             aGridObject.hasLetter   = false;

@@ -35,14 +35,15 @@ public class Player : GridObject
 
 		cam                 = Camera.main;
         interactionText     = GetComponentInChildren<Text>();
-        type                = GridObjectType.PLAYER;
         hasLetter           = true;
 
         StartCoroutine("InputHandling");
 		StartCoroutine("MoveCamera");
 	}
 
-	private IEnumerator InputHandling()
+    public override GridObjectType GetGridType() { return GridObjectType.PLAYER; }
+
+    private IEnumerator InputHandling()
     {
         while (true)
         {
@@ -115,7 +116,7 @@ public class Player : GridObject
 				nearestInteractable = objectNextPlayer;
 
                 //Interaction Text
-                if (hasLetter && objectNextPlayer.GetComponent<GridObject>().type == GridObjectType.NPC)
+                if (hasLetter && objectNextPlayer.GetComponent<GridObject>().GetGridType() == GridObjectType.NPC)
                 {
                     interactionText.text = "Give Letter: <E>";
                 }
