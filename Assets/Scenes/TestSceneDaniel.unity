@@ -148,9 +148,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 712385429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1f3a40b70a793a419b202521c9bd700, type: 3}
+  m_Script: {fileID: 11500000, guid: 2eb2930f57c8bc340a080808bc31a261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xPosition: 3
+  yPosition: 3
   gridHandler: {fileID: 712385432}
 --- !u!4 &712385431
 Transform:
@@ -231,10 +233,10 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
   - row:
+    - {fileID: 6489837636492172424, guid: 7dc4069e5c6d02f49b2cfaaf985da18e, type: 3}
     - {fileID: 0}
     - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 6489837636492172424, guid: 7dc4069e5c6d02f49b2cfaaf985da18e, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}

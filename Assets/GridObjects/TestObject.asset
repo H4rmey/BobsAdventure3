@@ -12,4 +12,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a39316033cc2bab4994d51876a0231b9, type: 3}
   m_Name: TestObject
   m_EditorClassIdentifier: 
-  objectSprite: {fileID: 0}
