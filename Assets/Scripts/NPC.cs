@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
-    public Vector2 position;
-    public GridHandler grid;
+    public Vector2      position;
+
+    public GridHandler  grid;
+
+    public List<BaseTask>   tasksQueue;
+    public GameObject       taskManager;
 
     // Start is called before the first frame update
     void Start()
     {
         grid = GetComponent<GridHandler>();
-        StartCoroutine("MoveToPosition", new Vector2(4, 8));
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
+        GetRandomTasks();
+
+        StartCoroutine("MoveToPosition", tasksQueue[0].destination);
     }
 
     private IEnumerator MoveToPosition(Vector2 aPosition)
@@ -53,5 +55,17 @@ public class NPC : MonoBehaviour
         if (value > 0)
             return 1;
         return 0;
+    }
+
+    private void GetRandomTasks()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            int randomTaskId = Random.Range(0, 4);
+
+            BaseTask task = taskManager.GetComponents<BaseTask>()[randomTaskId];
+
+            tasksQueue.Add(task);
+        }
     }
 }
