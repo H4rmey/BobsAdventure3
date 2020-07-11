@@ -151,9 +151,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb2930f57c8bc340a080808bc31a261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xPosition: 3
-  yPosition: 3
+  position: {x: 3, y: 3}
+  cameraOffset: -10
   gridHandler: {fileID: 712385432}
+  keyLeft: 276
+  keyRight: 275
+  keyUp: 273
+  keyDown: 274
 --- !u!4 &712385431
 Transform:
   m_ObjectHideFlags: 0
