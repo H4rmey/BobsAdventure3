@@ -13,7 +13,6 @@ public class BetterButton : MonoBehaviour
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(buttonPressed);
-
     }
 
     void buttonPressed()

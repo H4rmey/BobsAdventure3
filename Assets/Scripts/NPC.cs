@@ -9,7 +9,6 @@ public class NPC : MonoBehaviour
     public GridHandler  grid;
 
     public List<BaseTask>   tasksQueue;
-    public GameObject       taskManager;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +33,7 @@ public class NPC : MonoBehaviour
                 MoveNPC(new Vector2(0, harmClamp((int)aPosition.y - (int)position.y)));
             }
 
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
@@ -63,7 +62,7 @@ public class NPC : MonoBehaviour
         {
             int randomTaskId = Random.Range(0, 4);
 
-            BaseTask task = taskManager.GetComponents<BaseTask>()[randomTaskId];
+            BaseTask task = Resources.LoadAll<BaseTask>("Tasks")[randomTaskId];
 
             tasksQueue.Add(task);
         }
