@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : GridObject
 {
@@ -9,6 +10,9 @@ public class Player : GridObject
 	public	Camera		cam;
 
     public GameObject   gridObjectToInstantiate;
+
+    private Text        interactionText;
+    private bool        hasLetter = true;
 
     //sprites
     private     SpriteRenderer  spriteRenderer;
@@ -31,6 +35,7 @@ public class Player : GridObject
 		base.Initialize();
 
 		cam = Camera.main;
+        interactionText = GetComponentInChildren<Text>();
 
         StartCoroutine("InputHandling");
 		StartCoroutine("MoveCamera");
@@ -107,11 +112,21 @@ public class Player : GridObject
 			if (objectNextPlayer.CompareTag("Interactable"))
 			{
 				nearestInteractable = objectNextPlayer;
-				return;
-			}
-		}
 
-		nearestInteractable = default;
+                if (hasLetter)
+                    interactionText.text = "Give Letter: <E>";
+                else
+                    interactionText.text = "Interact with " + objectNextPlayer.name + ": <E>"; //TODO: update name giving
+
+                return;
+			}
+        }
+        else
+        {
+            interactionText.text = "";
+        }
+
+        nearestInteractable = default;
 	}
 
 	private void Interact()
