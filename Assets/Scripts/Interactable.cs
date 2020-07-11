@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Interactable : GridObject
 {
-	public virtual void Interact()
+	public virtual void Interact(GridObject aGridObject)
 	{
 		Debug.Log("EEF FREEF");
 	}

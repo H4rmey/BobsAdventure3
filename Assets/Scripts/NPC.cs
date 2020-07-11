@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class NPC : Interactable
 {
@@ -16,6 +17,8 @@ public class NPC : Interactable
 	public override void Initialize()
 	{
 		base.Initialize();
+
+        type = GridObjectType.NPC;
 
 		GetRandomTasks();
 
@@ -80,6 +83,21 @@ public class NPC : Interactable
             BaseTask task = Resources.LoadAll<BaseTask>("Tasks")[randomTaskId];
 
             tasksQueue.Add(task);
+        }
+    }
+
+    private void StartTasksThings()
+    {
+        Debug.Log("Eef to the freef, wob wob");
+    }
+
+    public override void Interact(GridObject aGridObject)
+    {
+        if (!hasLetter)
+        {
+            hasLetter               = true;
+            aGridObject.hasLetter   = false;
+            StartTasksThings();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : GridObject
 {
@@ -9,6 +10,8 @@ public class Player : GridObject
 	public	Camera		cam;
 
     public GameObject   gridObjectToInstantiate;
+
+    private Text        interactionText;
 
     //sprites
     private     SpriteRenderer  spriteRenderer;
@@ -30,7 +33,10 @@ public class Player : GridObject
 	{
 		base.Initialize();
 
-		cam = Camera.main;
+		cam                 = Camera.main;
+        interactionText     = GetComponentInChildren<Text>();
+        type                = GridObjectType.PLAYER;
+        hasLetter           = true;
 
         StartCoroutine("InputHandling");
 		StartCoroutine("MoveCamera");
@@ -61,7 +67,7 @@ public class Player : GridObject
                 spriteFlip = !spriteFlip;
             }
 
-			if (Input.GetKeyDown(keyInteract)) Interact();
+			if (Input.GetKeyDown(keyInteract)) pInteract();
 
 			yield return null;
 		}
@@ -107,19 +113,34 @@ public class Player : GridObject
 			if (objectNextPlayer.CompareTag("Interactable"))
 			{
 				nearestInteractable = objectNextPlayer;
-				return;
-			}
-		}
 
-		nearestInteractable = default;
+                //Interaction Text
+                if (hasLetter && objectNextPlayer.GetComponent<GridObject>().type == GridObjectType.NPC)
+                {
+                    interactionText.text = "Give Letter: <E>";
+                }
+                else
+                {
+                    interactionText.text = "Interact with " + objectNextPlayer.name + ": <E>"; //TODO: update name giving
+                }
+
+                return;
+			}
+        }
+        else
+        {
+            interactionText.text = "";
+        }
+
+        nearestInteractable = default;
 	}
 
-	private void Interact()
+	private void pInteract()
 	{
 		if (nearestInteractable == default) return;
 
-		nearestInteractable.GetComponent<Interactable>().Interact();
-	}
+		nearestInteractable.GetComponent<Interactable>().Interact(this);
+    }
 
 	#endregion
 }
