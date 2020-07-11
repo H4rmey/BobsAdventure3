@@ -25,10 +25,10 @@ public class Player : MonoBehaviour
 	{
 		while(true)
 		{
-			if (Input.GetKeyDown(keyLeft)) MovePlayer(new Vector2(-1, 0));
-			else if (Input.GetKeyDown(keyRight)) MovePlayer(new Vector2(1, 0));
-			else if (Input.GetKeyDown(keyUp)) MovePlayer(new Vector2(0, 1));
-			else if (Input.GetKeyDown(keyDown)) MovePlayer(new Vector2(0, -1));
+			if (Input.GetKeyDown(keyLeft))          MovePlayer(new Vector2(-1, 0));
+			else if (Input.GetKeyDown(keyRight))    MovePlayer(new Vector2(1, 0));
+			else if (Input.GetKeyDown(keyUp))       MovePlayer(new Vector2(0, 1));
+			else if (Input.GetKeyDown(keyDown))     MovePlayer(new Vector2(0, -1));
 
 			yield return null;
 		}
