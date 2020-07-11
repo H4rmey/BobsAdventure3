@@ -26,13 +26,11 @@ public class Player : GridObject
 	
 	private	GameObject	nearestInteractable;
 
-	private void Start()
-    {
-        gridHandler = GridHandler.Instance;
+	public override void Initialize()
+	{
+		base.Initialize();
 
-        cam = Camera.main;
-
-        gridHandler.InitCell((int)position.x, (int)position.y, gridObjectToInstantiate);
+		cam = Camera.main;
 
         StartCoroutine("InputHandling");
 		StartCoroutine("MoveCamera");

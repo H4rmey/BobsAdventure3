@@ -13,19 +13,16 @@ public class NPC : Interactable
     private     bool            spriteId    = false;
     private     bool            spriteFlip  = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        gridHandler = GridHandler.Instance;
+	public override void Initialize()
+	{
+		base.Initialize();
 
-        gridHandler.SetCell((int)position.x, (int)position.y, this.gameObject);
-
-        GetRandomTasks();
+		GetRandomTasks();
 
         StartCoroutine("MoveToPosition", tasksQueue[0].destination);
-    }
+	}
 
-    private IEnumerator MoveToPosition(Vector2 aPosition)
+	private IEnumerator MoveToPosition(Vector2 aPosition)
     {
         while (true)
         {

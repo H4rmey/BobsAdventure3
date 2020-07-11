@@ -19,10 +19,7 @@ public class GridHandler : MonoBehaviour
             return;
         }
         Instance = this;
-    }
-
-    private void Start()
-	{
+ 
 		for (int x = 0; x < amountCols; x++)
 		{
 			for (int y = 0; y < amountRows; y++)
@@ -54,6 +51,8 @@ public class GridHandler : MonoBehaviour
 	public void	SetCell(int aX, int aY, GameObject aObject)
 	{
 		if (!InGridBounds(aX, aY)) return;
+
+		ResetCell(aX, aY);
 
 		grid[aY].row[aX] = aObject;
 		aObject.transform.position = new Vector2(aX * cellSize, aY * cellSize);
