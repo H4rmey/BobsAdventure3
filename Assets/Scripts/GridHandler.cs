@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GridHandler : MonoBehaviour
 {
-    public static GridHandler   Instance;
+    public	static	GridHandler	Instance;
 
 	public	static	int			amountCols	= 16;
 	public	static	int			amountRows	= 16;
@@ -52,7 +52,7 @@ public class GridHandler : MonoBehaviour
 	{
 		if (!InGridBounds(aX, aY)) return;
 
-		ResetCell(aX, aY);
+		//ResetCell(aX, aY);
 
 		grid[aY].row[aX] = aObject;
 		aObject.transform.position = new Vector2(aX * cellSize, aY * cellSize);

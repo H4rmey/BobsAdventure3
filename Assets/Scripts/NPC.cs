@@ -14,11 +14,15 @@ public class NPC : Interactable
     private     bool            spriteId    = false;
     private     bool            spriteFlip  = false;
 
+	private		TaskHandler		taskHandler;
+
 	public override void Initialize()
 	{
 		base.Initialize();
 
         type = GridObjectType.NPC;
+
+		taskHandler = gridHandler.GetComponent<TaskHandler>();
 
 		GetRandomTasks();
 
@@ -78,11 +82,7 @@ public class NPC : Interactable
     {
         for (int i = 0; i < 3; i++)
         {
-            int randomTaskId = UnityEngine.Random.Range(0, 4);
-
-            BaseTask task = Resources.LoadAll<BaseTask>("Tasks")[randomTaskId];
-
-            tasksQueue.Add(task);
+            tasksQueue.Add(taskHandler.GetRandomTask());
         }
     }
 

@@ -417,6 +417,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   gridHandler: {fileID: 0}
+  type: 0
+  hasLetter: 0
   cameraOffset: -10
   cam: {fileID: 0}
   gridObjectToInstantiate: {fileID: 6489837636492172424, guid: 909e6f95543d3134caf2ec86d2f1071f,
@@ -1064,6 +1066,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e70b00411346934ab12d556d32c6e98, type: 3}
+--- !u!114 &1236213133 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5323101133562190452, guid: 6bc2ba733ec548749bbfa4d3ecc81528,
+    type: 3}
+  m_PrefabInstance: {fileID: 676671064}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 762978d790457914a8a081d0eb62b220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1329504036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1995,6 +2009,7 @@ GameObject:
   m_Component:
   - component: {fileID: 708982059664763033}
   - component: {fileID: 5276090560616242646}
+  - component: {fileID: 708982059664763036}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -2002,6 +2017,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &708982059664763036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708982059664763035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53da5db51d44b674aba7dc192c9eac6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  taskList:
+  - {fileID: 1236213133}
 --- !u!114 &5276090560616242646
 MonoBehaviour:
   m_ObjectHideFlags: 0
