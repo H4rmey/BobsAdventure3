@@ -9,8 +9,6 @@ public class GridHandler : MonoBehaviour
 
 	public			GridRow[]	grid		= new GridRow[amountRows];
 
-
-
 	private void Start()
 	{
 		for (int x = 0; x < amountCols; x++)
@@ -73,7 +71,7 @@ public class GridHandler : MonoBehaviour
 		return false;
 	}
 
-	private bool InGridBounds(int aX, int aY)
+	public bool InGridBounds(int aX, int aY)
 	{
 		if (aY >=	amountRows	||
 			aX >=	amountCols	||
