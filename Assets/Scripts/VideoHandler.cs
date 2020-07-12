@@ -6,14 +6,9 @@ using UnityEngine.Video;
 
 public class VideoHandler : MonoBehaviour
 {
-    private VideoPlayer vp;
-    public float videoDuration;
-    public float timer;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
+    public      float       videoDuration;
+    public      string      scene;
+    private     float       timer;
 
     // Update is called once per frame
     void Update()
@@ -21,6 +16,6 @@ public class VideoHandler : MonoBehaviour
         timer += Time.deltaTime;
 
         if (timer > videoDuration)
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene(scene);
     }
 }
