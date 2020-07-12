@@ -16,6 +16,8 @@ public class NPC : Interactable
 
 	private		TaskHandler		taskHandler;
 
+	private		int				currentTaskIndex;
+
 	public override void Initialize()
 	{
 		base.Initialize();
@@ -24,35 +26,140 @@ public class NPC : Interactable
 
 		GetRandomTasks();
 
-        StartCoroutine("MoveToPosition", tasksQueue[0].destination);
+        StartCoroutine("TaskHandling");
 	}
 
     public override GridObjectType GetGridType() { return GridObjectType.NPC; }
 
-    private IEnumerator MoveToPosition(Vector2 aPosition)
+    private IEnumerator TaskHandling()
     {
+		currentTaskIndex = 0;
+
         while (true)
         {
-            if (position.x != aPosition.x)
-            {
-                int directionX = HarmClamp((int)aPosition.x - (int)position.x);
+			Vector2 direction = tasksQueue[currentTaskIndex].destination - position;
+			direction.x = HarmClamp((int)direction.x);
+			direction.y = HarmClamp((int)direction.y);
 
-                spriteId = !spriteId;
 
-                MoveNPC(new Vector2(directionX, 0));
-            }
-            else if (position.y != aPosition.y)
-            {
-                int directionY = HarmClamp((int)aPosition.y - (int)position.y);
+			//if (!ArrivedAtTask())
+			//{
+				
+			//	else 
+			//}
+			//else
+			//{
+			//	if (currentTaskIndex < tasksQueue.Count)
+			//	{
+			//		currentTaskIndex++;
+			//	}
+			//	else
+			//	{
+			//		Debug.Log(this.gameObject.name + " Deded");
+			//	}
+			//	}
 
-                spriteFlip = !spriteFlip;
+			if (position.x != tasksQueue[currentTaskIndex].destination.x)
+			{
+				if (!gridHandler.CellIsOccupied((int)(position.x + direction.x), (int)position.y))
+				{
+					if (MoveNPC(new Vector2(direction.x, 0)))
+					{
+						spriteId = !spriteId;
+					}
+				}
+				else
+				{
+					if (MoveNPC(new Vector2(0, direction.y)))
+					{
+						spriteFlip = !spriteFlip;
+					}
+					else if (MoveNPC(new Vector2(0, -direction.y)))
+					{
+						spriteFlip = !spriteFlip;
+					}
+				}
+			}
 
-                MoveNPC(new Vector2(0, directionY));
-            }
+			else if (position.y != tasksQueue[currentTaskIndex].destination.y)
+			{
+				if (!gridHandler.CellIsOccupied((int)position.x, (int)(position.y + direction.y)))
+				{
+					if (MoveNPC(new Vector2(0, direction.y)))
+					{
+						spriteFlip = !spriteFlip;
+					}
+				}
+				else 
+				{
+					if (MoveNPC(new Vector2(direction.x, 0)))
+					{
+						spriteId = !spriteId;
+					}
+					else if (MoveNPC(new Vector2(-direction.x, 0)))
+					{
+						spriteId = !spriteId;
+					}
+				}
+
+				//if (!gridHandler.CellIsOccupied((int)(position.x - direction.x), (int)position.y))
+				//{
+				//	spriteId = !spriteId;
+				//	MoveNPC(new Vector2(-direction.x, 0));
+				//}
+				//else if (!gridHandler.CellIsOccupied((int)position.x, (int)(position.y - direction.y)))
+				//{
+				//	spriteFlip = !spriteFlip;
+				//	MoveNPC(new Vector2(0, -direction.y));
+				//}
+			}
+
+            //if (position.x != tasksQueue[currentTaskIndex].destination.x)
+            //{
+            //    int directionX = HarmClamp((int)tasksQueue[currentTaskIndex].destination.x - (int)position.x);
+
+            //    spriteId = !spriteId;
+
+            //    MoveNPC(new Vector2(directionX, 0));
+            //}
+            //else if (position.y != tasksQueue[currentTaskIndex].destination.y)
+            //{
+            //    int directionY = HarmClamp((int)tasksQueue[currentTaskIndex].destination.y - (int)position.y);
+
+            //    spriteFlip = !spriteFlip;
+
+            //    MoveNPC(new Vector2(0, directionY));
+            //}
+
+			if (ArrivedAtTask())
+			{
+				if (currentTaskIndex < tasksQueue.Count - 1)
+				{
+					currentTaskIndex++;
+				}
+				else
+				{
+					Debug.Log("Done");
+				}
+			}
 
             yield return new WaitForSeconds(0.5f);
         }
     }
+
+	private bool ArrivedAtTask()
+	{
+		if (position.x >= tasksQueue[currentTaskIndex].destination.x - 1	&&
+			position.x <= tasksQueue[currentTaskIndex].destination.x + 1	&&
+			position.y >= tasksQueue[currentTaskIndex].destination.y - 1	&&
+			position.y <= tasksQueue[currentTaskIndex].destination.y + 1)
+		{
+			Debug.Log(this.gameObject.name + " dided a tasked");
+			return true;
+		}
+
+		return false;
+	}
 
     private bool MoveNPC(Vector2 aDirection)
     {
