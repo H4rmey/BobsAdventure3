@@ -329,13 +329,8 @@ MonoBehaviour:
   cameraOffset: -10
   cam: {fileID: 0}
   gridObjectToInstantiate: {fileID: 6489837636492172424}
-<<<<<<< HEAD
-  movementDelay: 0.1
-  cameraSmoothing: 0.1
-=======
   movementDelay: 0.2
   cameraSmoothing: 0.2
->>>>>>> SCORE
   sprites:
   - {fileID: 21300000, guid: b0e188608b083c64ab30993294202a3a, type: 3}
   - {fileID: 21300000, guid: 6b6e4daa07ea49946a251475a62c82a1, type: 3}
