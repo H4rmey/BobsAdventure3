@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3051388110283891357}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 313101515216361906}
@@ -67,10 +67,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1559808853
-  m_SortingLayer: 2
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f791fcc86e4fd9f4daba21348306777c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a0284639a790bd747850314346d42556, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -92,10 +92,9 @@ GameObject:
   - component: {fileID: 313101515216361906}
   - component: {fileID: 5062815057081362842}
   - component: {fileID: 4640078918277669270}
-  - component: {fileID: 4943883826980527060}
-  - component: {fileID: 5323101133562190452}
+  - component: {fileID: -5883179454021756344}
   m_Layer: 0
-  m_Name: CoffeeMachine
+  m_Name: The Bossman
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,7 +108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6489837636492172424}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7832328201081258700}
@@ -163,7 +162,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &4943883826980527060
+--- !u!114 &-5883179454021756344
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,40 +171,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 6489837636492172424}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96268a2fe8a934146be6c09cceb1335c, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f3fb18be475ad84885fbb70a5cde42b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   gridHandler: {fileID: 0}
   hasLetter: 0
-  objName: Coffee Machine
+  objName: The Bossman
   respone: noresponse
-  isItem: 0
-  itemItIs: 0
-  requiresItem: 0
-  itemItRequires: 0
-  task: {fileID: 5323101133562190452}
-  isTask: 1
---- !u!114 &5323101133562190452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6489837636492172424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 762978d790457914a8a081d0eb62b220, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destinationIsSelf: 1
-  destination: {x: 5, y: 5}
-  isActive: 0
-  isTriggered: 1
-  isFinalTask: 0
-  iconSprite:
-  - {fileID: 21300000, guid: f139aac71ea96314996da7aafccf9b36, type: 3}
-  - {fileID: 21300000, guid: c978e0eea16289b489ffdcfab59c5c25, type: 3}
-  worldSprite:
-  - {fileID: 21300000, guid: f791fcc86e4fd9f4daba21348306777c, type: 3}
-  - {fileID: 21300000, guid: f791fcc86e4fd9f4daba21348306777c, type: 3}
+  sprites:
+  - {fileID: 21300000, guid: a0284639a790bd747850314346d42556, type: 3}
+  - {fileID: 21300000, guid: 49650a6a464d7bd4a94b4b4506602955, type: 3}
+  spriteSwapTime: 0
+  firstTaskPref: {fileID: 0}
+  secondTaskPref: {fileID: 0}
+  firstPrefChance: 30
+  secondPrefChance: 20
+  currentTask: {fileID: 0}
+  amountOfTaskToDo: 5

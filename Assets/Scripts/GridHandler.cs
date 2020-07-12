@@ -26,7 +26,7 @@ public class GridHandler : MonoBehaviour
 
         if (gameEnds)
         {
-            score = (int)(10*timer / stepAmount);
+            score = (int)(1000*timer / stepAmount);
             PlayerPrefs.SetInt("PlayerScore", score);
 
             SceneManager.LoadScene("GameOver");

@@ -41,8 +41,8 @@ public class NPC : Interactable
 	{
 		base.Initialize();
 
-        taskIcon = GameObject.Find("Canvas/Icon").GetComponent<Image>();
-        thinkCloudIcon = GameObject.Find("Canvas/ThinkIcon").GetComponent<Image>();
+        taskIcon = GameObject.Find(gameObject.name + "/Canvas/Icon").GetComponent<Image>();
+        thinkCloudIcon = GameObject.Find(gameObject.name + "/Canvas/ThinkIcon").GetComponent<Image>();
         taskIcon.enabled = false;
         thinkCloudIcon.enabled = false;
 
@@ -55,7 +55,7 @@ public class NPC : Interactable
     {
         timer += Time.deltaTime;
 
-        if (timer > spriteSwapTime && doSpriteSwapping)
+        if (doSpriteSwapping && timer > spriteSwapTime)
         {
             timer = 0;
 
@@ -84,8 +84,7 @@ public class NPC : Interactable
             {
 				if (isDoingFinalTask)
 				{
-					///// END OF GAME
-					Debug.Log("LETTER DELIVERED");
+					gridHandler.gameEnds = true;
 				}
 
 				if (currentTask.isTriggered)

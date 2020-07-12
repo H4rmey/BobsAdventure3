@@ -184,8 +184,8 @@ MonoBehaviour:
   itemItIs: 0
   requiresItem: 0
   itemItRequires: 0
-  task: {fileID: 0}
-  isTask: 0
+  task: {fileID: 2039319905536331395}
+  isTask: 1
 --- !u!114 &2039319905536331395
 MonoBehaviour:
   m_ObjectHideFlags: 0

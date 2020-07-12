@@ -207,5 +207,5 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 762fb94c49ca0a74bac7a2bcbd8b6f9c, type: 3}
   - {fileID: 21300000, guid: fc5a99de7b1f6a04d97a878cb0ada587, type: 3}
   worldSprite:
-  - {fileID: 21300000, guid: f7602854e983ac944990cccd203b3f20, type: 3}
   - {fileID: 21300000, guid: 5d7b7add1cf0084449383c136189f3f0, type: 3}
+  - {fileID: 21300000, guid: f7602854e983ac944990cccd203b3f20, type: 3}

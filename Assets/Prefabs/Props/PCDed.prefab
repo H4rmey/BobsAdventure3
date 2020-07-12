@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: -1559808853
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f791fcc86e4fd9f4daba21348306777c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 934e7e2603ec0a541803043d1855860b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,9 +93,9 @@ GameObject:
   - component: {fileID: 5062815057081362842}
   - component: {fileID: 4640078918277669270}
   - component: {fileID: 4943883826980527060}
-  - component: {fileID: 5323101133562190452}
+  - component: {fileID: 2039319905536331395}
   m_Layer: 0
-  m_Name: CoffeeMachine
+  m_Name: PCDed
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,15 +178,15 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   gridHandler: {fileID: 0}
   hasLetter: 0
-  objName: Coffee Machine
+  objName: Computer
   respone: noresponse
   isItem: 0
   itemItIs: 0
-  requiresItem: 0
-  itemItRequires: 0
-  task: {fileID: 5323101133562190452}
+  requiresItem: 1
+  itemItRequires: 2
+  task: {fileID: 2039319905536331395}
   isTask: 1
---- !u!114 &5323101133562190452
+--- !u!114 &2039319905536331395
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -199,13 +199,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destinationIsSelf: 1
-  destination: {x: 5, y: 5}
+  destination: {x: 0, y: 0}
   isActive: 0
   isTriggered: 1
   isFinalTask: 0
   iconSprite:
-  - {fileID: 21300000, guid: f139aac71ea96314996da7aafccf9b36, type: 3}
-  - {fileID: 21300000, guid: c978e0eea16289b489ffdcfab59c5c25, type: 3}
+  - {fileID: 21300000, guid: ff3ecdbdc62977d4d986659e6bf02589, type: 3}
+  - {fileID: 21300000, guid: 0fb1a0293031fed418385db270ee94aa, type: 3}
   worldSprite:
-  - {fileID: 21300000, guid: f791fcc86e4fd9f4daba21348306777c, type: 3}
-  - {fileID: 21300000, guid: f791fcc86e4fd9f4daba21348306777c, type: 3}
+  - {fileID: 21300000, guid: 934e7e2603ec0a541803043d1855860b, type: 3}
+  - {fileID: 21300000, guid: 274250bd468383c40b461f1683d2a0e3, type: 3}
