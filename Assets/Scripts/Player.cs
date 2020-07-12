@@ -35,6 +35,8 @@ public class Player : GridObject
 	
 	private	GameObject	nearestInteractable;
 
+	public	ItemObject	currentItem			= ItemObject.NONE;
+
 	public override void Initialize()
 	{
 		base.Initialize();
@@ -180,4 +182,11 @@ public class Player : GridObject
     }
 
 	#endregion
+}
+
+public enum ItemObject
+{
+	NONE,
+	FIRE_EXTINGUISHER,
+	PEN
 }

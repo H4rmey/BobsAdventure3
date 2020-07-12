@@ -4,12 +4,25 @@ using UnityEngine;
 
 public class Prop : Interactable
 {
-	public BaseTask task;
+	public	BaseTask	task;
+
+	[Header("Is Item Zooi")]
+	public	bool		isItem;
+	public	ItemObject	itemItIs;
+
+	[Header("Requires Item Zooi")]
+	public	bool		requiresItem;
+	public	ItemObject	itemItRequires;
+
     private TaskHandler taskHandler;
+
+	private	Player		player;
 
     public override void Initialize()
     {
         base.Initialize();
+
+		player = GameObject.Find("Player").GetComponent<Player>();
 
         task = GetComponent<BaseTask>();
         if (task != null)
@@ -21,8 +34,18 @@ public class Prop : Interactable
 
     public override void Interact(GridObject aGridObject)
 	{
-		task.isActive = false;
-        task.isTriggered = true;
+		if (requiresItem && player.currentItem != itemItRequires)
+			return;
+
+		task.isActive		= false;
+        task.isTriggered	= true;
+
+		if (isItem)
+		{
+			player.currentItem = itemItIs;
+			Destroy(this.gameObject);
+		}
+
         Debug.Log("interacted with: " + gameObject.name);
 	}
 }
