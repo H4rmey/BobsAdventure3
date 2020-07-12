@@ -202,6 +202,7 @@ MonoBehaviour:
   destination: {x: 5, y: 5}
   isActive: 0
   isTriggered: 1
+  isFinalTask: 1
   iconSprite:
   - {fileID: 21300000, guid: f139aac71ea96314996da7aafccf9b36, type: 3}
   - {fileID: 21300000, guid: c978e0eea16289b489ffdcfab59c5c25, type: 3}

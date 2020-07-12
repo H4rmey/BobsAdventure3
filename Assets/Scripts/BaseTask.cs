@@ -12,6 +12,8 @@ public class BaseTask : MonoBehaviour
     public bool         isActive			= false;
     public bool         isTriggered         = false;
 
+	public bool			isFinalTask			= false;
+
     public              Sprite[]            iconSprite;
 
     private void Awake()

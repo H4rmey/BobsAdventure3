@@ -31,7 +31,10 @@ public class Prop : Interactable
         if (task != null)
         {
             taskHandler = GameObject.Find("Game Manager").GetComponent<TaskHandler>();
-            taskHandler.taskList.Add(task);
+
+            if (!task.isFinalTask)
+				taskHandler.taskList.Add(task);
+
 			isTask		= true;
         }
     }

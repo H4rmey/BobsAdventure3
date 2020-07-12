@@ -35,6 +35,8 @@ public class NPC : Interactable
 
 	private		int				amountTasksDone		= 0;
 
+	private		bool			isDoingFinalTask	= false;
+
 	public override void Initialize()
 	{
 		base.Initialize();
@@ -80,6 +82,12 @@ public class NPC : Interactable
 
             if (ArrivedAtTask())
             {
+				if (isDoingFinalTask)
+				{
+					///// END OF GAME
+					Debug.Log("LETTER DELIVERED");
+				}
+
 				if (currentTask.isTriggered)
 				{
 					++amountTasksDone;
@@ -91,8 +99,9 @@ public class NPC : Interactable
 					}
 					else
 					{
-						//set target to bossman
-						Debug.Log("Done");
+						currentTask = taskHandler.finalTask;
+						currentTask.isTriggered = false;
+						isDoingFinalTask = true;
 					}
 				}
             }
@@ -167,10 +176,7 @@ public class NPC : Interactable
 
 	private bool ArrivedAtTask()
 	{
-		if (position.x >= currentTask.destination.x - 1	&&
-			position.x <= currentTask.destination.x + 1	&&
-			position.y >= currentTask.destination.y - 1	&&
-			position.y <= currentTask.destination.y + 1)
+		if (CheckNextToTask())
         {
             taskIcon.enabled        = false;
             thinkCloudIcon.enabled  = false;
@@ -178,6 +184,28 @@ public class NPC : Interactable
 
             Debug.Log(this.gameObject.name + " dided a tasked");
 			return true;
+		}
+
+		return false;
+	}
+
+	private bool CheckNextToTask()
+	{
+		if (position.x == currentTask.destination.x)
+		{
+			if (position.y == currentTask.destination.y - 1 ||
+				position.y == currentTask.destination.y + 1)
+			{
+				return true;
+			}
+		}
+		else if (position.y == currentTask.destination.y)
+		{
+			if (position.x == currentTask.destination.x - 1 ||
+				position.x == currentTask.destination.x + 1)
+			{
+				return true;
+			}
 		}
 
 		return false;

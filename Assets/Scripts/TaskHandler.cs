@@ -5,6 +5,7 @@ using UnityEngine;
 public class TaskHandler : MonoBehaviour
 {
     public	List<BaseTask>	taskList;
+	public	BaseTask		finalTask;
 
 	public BaseTask GetRandomTask()
 	{
