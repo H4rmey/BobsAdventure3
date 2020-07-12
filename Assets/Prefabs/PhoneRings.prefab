@@ -178,6 +178,9 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   gridHandler: {fileID: 0}
   hasLetter: 0
+  objName: noname
+  respone: noresponse
+  task: {fileID: 0}
 --- !u!114 &2039319905536331395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,3 +196,4 @@ MonoBehaviour:
   destinationIsSelf: 1
   destination: {x: 0, y: 0}
   isActive: 0
+  isTriggered: 1

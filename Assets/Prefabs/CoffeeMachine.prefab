@@ -177,8 +177,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   gridHandler: {fileID: 0}
-  type: 0
   hasLetter: 0
+  objName: noname
+  respone: noresponse
+  task: {fileID: 0}
 --- !u!114 &5323101133562190452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,5 +194,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destinationIsSelf: 1
-  destination: {x: 0, y: 0}
+  destination: {x: 5, y: 5}
   isActive: 0
+  isTriggered: 1

@@ -176,3 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   gridHandler: {fileID: 0}
+  hasLetter: 0
+  objName: noname
+  respone: noresponse
+  task: {fileID: 0}

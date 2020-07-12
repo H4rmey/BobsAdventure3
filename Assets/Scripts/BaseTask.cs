@@ -9,9 +9,10 @@ public class BaseTask : MonoBehaviour
 	public bool			destinationIsSelf	= false;
 
     public Vector2      destination;
-    public bool         isActive			= true;      //override for the completion of the task
+    public bool         isActive			= false;
+    public bool         isTriggered         = false;      
 
-	private void Awake()
+    private void Awake()
 	{
 		if (destinationIsSelf)
 		{

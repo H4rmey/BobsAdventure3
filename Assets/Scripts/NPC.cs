@@ -23,39 +23,21 @@ public class NPC : Interactable
 		base.Initialize();
 
 		taskHandler = gridHandler.GetComponent<TaskHandler>();
-
-		GetRandomTasks();
 	}
 
     public override GridObjectType GetGridType() { return GridObjectType.NPC; }
 
     private IEnumerator TaskHandling()
     {
-		currentTaskIndex = 0;
+        GetRandomTasks();
+        currentTaskIndex = 0;
+        tasksQueue[currentTaskIndex].isTriggered = false;
 
         while (true)
         {
 			Vector2 direction = tasksQueue[currentTaskIndex].destination - position;
 			direction.x = HarmClamp((int)direction.x);
 			direction.y = HarmClamp((int)direction.y);
-
-
-			//if (!ArrivedAtTask())
-			//{
-				
-			//	else 
-			//}
-			//else
-			//{
-			//	if (currentTaskIndex < tasksQueue.Count)
-			//	{
-			//		currentTaskIndex++;
-			//	}
-			//	else
-			//	{
-			//		Debug.Log(this.gameObject.name + " Deded");
-			//	}
-			//	}
 
 			if (position.x != tasksQueue[currentTaskIndex].destination.x)
 			{
@@ -101,17 +83,19 @@ public class NPC : Interactable
 				}
 			}
 
-			if (ArrivedAtTask() && tasksQueue[currentTaskIndex].isActive)
-			{
-				if (currentTaskIndex < tasksQueue.Count - 1)
-				{
-					currentTaskIndex++;
-				}
+			if (ArrivedAtTask() && tasksQueue[currentTaskIndex].isTriggered)
+            {
+                //go to next task
+                if (currentTaskIndex < tasksQueue.Count - 1)
+                {
+                    currentTaskIndex++;
+                    tasksQueue[currentTaskIndex].isTriggered = false;
+                }
 				else
 				{
 					Debug.Log("Done");
-				}
-			}
+                }
+            }
 
             yield return new WaitForSeconds(0.5f);
         }
@@ -157,7 +141,7 @@ public class NPC : Interactable
 
     private void GetRandomTasks()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 6; i++)
         {
             tasksQueue.Add(taskHandler.GetRandomTask());
         }
