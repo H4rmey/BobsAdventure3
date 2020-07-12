@@ -9,9 +9,15 @@ public class Player : GridObject
 
 	public	Camera		cam;
 
-    public GameObject   gridObjectToInstantiate;
+    public  GameObject  gridObjectToInstantiate;
+
+    private Vector2     previousPos;
+    private float       movementElapsedTime;
+    public float        movementDelay;
 
     private Text        interactionText;
+    private float       cameraElapsedTime;
+    public float        cameraSmoothing;
 
     //sprites
     private     SpriteRenderer  spriteRenderer;
@@ -47,28 +53,34 @@ public class Player : GridObject
     {
         while (true)
         {
+            while (movementElapsedTime >= 0 && movementElapsedTime < movementDelay)
+            {
+                movementElapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
             if (Input.GetKeyDown(keyLeft))
             {
                 spriteFlip = true;
                 MovePlayer(new Vector2(-1, 0));
             }
-			else if (Input.GetKeyDown(keyRight))
+            else if (Input.GetKeyDown(keyRight))
             {
                 spriteFlip = false;
                 MovePlayer(new Vector2(1, 0));
             }
-			else if (Input.GetKeyDown(keyUp))
+            else if (Input.GetKeyDown(keyUp))
             {
                 spriteFlip = !spriteFlip;
                 MovePlayer(new Vector2(0, 1));
             }
-			else if (Input.GetKeyDown(keyDown))
+            else if (Input.GetKeyDown(keyDown))
             {
                 spriteFlip = !spriteFlip;
                 MovePlayer(new Vector2(0, -1));
             }
 
-			if (Input.GetKeyDown(keyInteract)) pInteract();
+            if (Input.GetKeyDown(keyInteract)) pInteract();
 
 			yield return null;
 		}
@@ -78,16 +90,35 @@ public class Player : GridObject
 
 	private IEnumerator MoveCamera()
 	{
-		while (true)
-		{
-			cam.transform.position = new Vector3(position.x * GridHandler.cellSize, position.y * GridHandler.cellSize, cameraOffset);
-			yield return null;
-		}
-	}
+        while (true)
+        {
+            Vector3 targetPos   = new Vector3(position.x * GridHandler.cellSize, position.y * GridHandler.cellSize, cameraOffset);
+            Vector3 currentPos  = new Vector3(previousPos.x * GridHandler.cellSize, previousPos.y * GridHandler.cellSize, cameraOffset);
+
+            while (cameraElapsedTime < cameraSmoothing)
+            {
+                cameraElapsedTime += Time.deltaTime;                
+                
+                cam.transform.position = Vector3.Slerp(currentPos, targetPos, cameraElapsedTime / cameraSmoothing);
+
+                yield return null;
+            }
+
+            cam.transform.position = targetPos;
+            yield return null;
+        }
+    }
 
 	private void MovePlayer(Vector2 aDirection)
-	{
-		if (gridHandler.MoveCell((int)position.x, (int)position.y, (int)(position.x + aDirection.x), (int)(position.y + aDirection.y)))
+    {
+        previousPos = position;
+
+        if (cameraElapsedTime >= cameraSmoothing)
+            cameraElapsedTime = 0;
+
+        movementElapsedTime = 0;
+
+        if (gridHandler.MoveCell((int)position.x, (int)position.y, (int)(position.x + aDirection.x), (int)(position.y + aDirection.y)))
 		{
 			position += aDirection;
 

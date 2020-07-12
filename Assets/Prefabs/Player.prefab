@@ -176,7 +176,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: asdfasdfadf
+  m_Text: 
 --- !u!1 &3051388110283891357
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +306,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   gridHandler: {fileID: 0}
-  type: 0
   hasLetter: 0
 --- !u!114 &410340816
 MonoBehaviour:
@@ -322,11 +321,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   gridHandler: {fileID: 0}
-  type: 0
   hasLetter: 0
   cameraOffset: -10
   cam: {fileID: 0}
   gridObjectToInstantiate: {fileID: 6489837636492172424}
+  previousPos: {x: 0, y: 0}
+  movementDelay: 0.1
+  movementElapsedTime: 0
+  interactionText: {fileID: 0}
+  cameraSmoothing: 0.1
+  cameraElapsedTime: 0
   sprites:
   - {fileID: 21300000, guid: b0e188608b083c64ab30993294202a3a, type: 3}
   - {fileID: 21300000, guid: 6b6e4daa07ea49946a251475a62c82a1, type: 3}
