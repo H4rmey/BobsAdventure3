@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: -1559808853
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 984172170803f32438034294346ca59c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7ca1a5e7c70bf4b448b41967e2908e15, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,9 +94,9 @@ GameObject:
   - component: {fileID: 4640078918277669270}
   - component: {fileID: 4943883826980527060}
   - component: {fileID: 2039319905536331395}
-  - component: {fileID: -2785054551868893521}
+  - component: {fileID: -1989924597702138238}
   m_Layer: 0
-  m_Name: FaxRings
+  m_Name: Airco
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,12 +179,12 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   gridHandler: {fileID: 0}
   hasLetter: 0
-  objName: Fax
+  objName: AC
   respone: noresponse
   isItem: 0
   itemItIs: 0
-  requiresItem: 0
-  itemItRequires: 0
+  requiresItem: 1
+  itemItRequires: 2
   task: {fileID: 2039319905536331395}
   isTask: 1
 --- !u!114 &2039319905536331395
@@ -205,12 +205,12 @@ MonoBehaviour:
   isTriggered: 1
   isFinalTask: 0
   iconSprite:
-  - {fileID: 21300000, guid: dcba9192aa019cc4cb77f77c32c4f0f2, type: 3}
-  - {fileID: 21300000, guid: 237f09df5770994488ea69fc1199fe38, type: 3}
+  - {fileID: 21300000, guid: 9c15f933b3d4a12468f5d557577393a7, type: 3}
+  - {fileID: 21300000, guid: 560711feb2a9ee943a04f46685ad2c30, type: 3}
   worldSprite:
-  - {fileID: 21300000, guid: 984172170803f32438034294346ca59c, type: 3}
-  - {fileID: 21300000, guid: 984172170803f32438034294346ca59c, type: 3}
---- !u!114 &-2785054551868893521
+  - {fileID: 21300000, guid: 7ca1a5e7c70bf4b448b41967e2908e15, type: 3}
+  - {fileID: 21300000, guid: 7ca1a5e7c70bf4b448b41967e2908e15, type: 3}
+--- !u!114 &-1989924597702138238
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
