@@ -6,17 +6,20 @@ using UnityEngine.UI;
 
 public class BetterButton : MonoBehaviour
 {
-    private Button button;
-    public string scene;
+    public string[] scenes;
 
-    void OnEnable()
+    public void GotoScene(string sceneName)
     {
-        button = GetComponent<Button>();
-        button.onClick.AddListener(buttonPressed);
+        SceneManager.LoadScene(sceneName);
     }
 
-    void buttonPressed()
+    public void ExitGame()
     {
-        SceneManager.LoadScene(scene);
+        Application.Quit();
+    }
+
+    public void GotoRandomScene()
+    {
+        SceneManager.LoadScene(scenes[Random.Range(0, scenes.Length)]);
     }
 }
