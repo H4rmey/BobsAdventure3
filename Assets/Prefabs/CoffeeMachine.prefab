@@ -181,6 +181,10 @@ MonoBehaviour:
   objName: noname
   respone: noresponse
   task: {fileID: 0}
+  isItem: 0
+  itemItIs: 0
+  requiresItem: 0
+  itemItRequires: 0
 --- !u!114 &5323101133562190452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,3 +201,6 @@ MonoBehaviour:
   destination: {x: 5, y: 5}
   isActive: 0
   isTriggered: 1
+  iconSprite:
+  - {fileID: 21300000, guid: f139aac71ea96314996da7aafccf9b36, type: 3}
+  - {fileID: 21300000, guid: c978e0eea16289b489ffdcfab59c5c25, type: 3}

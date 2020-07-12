@@ -10,6 +10,7 @@ public class GridHandler : MonoBehaviour
 	public	static	int			cellSize	= 1;
 
 	public			GridRow[]	grid		= new GridRow[amountRows];
+    public          Sprite[]    thinkCloudIcons;
 
     private void Awake()
     {

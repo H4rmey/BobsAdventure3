@@ -14,9 +14,14 @@ public class NPC : Interactable
     public      Sprite[]        sprites;
     private     bool            spriteId    = false;
     private     bool            spriteFlip  = false;
+    public      float           spriteSwapTime;
 
-    public      Image           taskIcon;
-    public      Image           thinkCloudIcon;
+    private     float           timer             = 0;
+    private     bool            doSpriteSwapping   = false;
+    private     bool            taskSpriteId       = false;
+
+    private     Image           taskIcon;
+    private     Image           thinkCloudIcon;
 
     private		TaskHandler		taskHandler;
 
@@ -26,10 +31,33 @@ public class NPC : Interactable
 	{
 		base.Initialize();
 
-		taskHandler = gridHandler.GetComponent<TaskHandler>();
+        taskIcon = GameObject.Find("Canvas/Icon").GetComponent<Image>();
+        thinkCloudIcon = GameObject.Find("Canvas/ThinkIcon").GetComponent<Image>();
+        taskIcon.enabled = false;
+        thinkCloudIcon.enabled = false;
+
+        taskHandler = gridHandler.GetComponent<TaskHandler>();
 	}
 
     public override GridObjectType GetGridType() { return GridObjectType.NPC; }
+
+    private void Update()
+    {
+        timer += Time.deltaTime;
+
+        if (timer > spriteSwapTime && doSpriteSwapping)
+        {
+            timer = 0;
+
+            taskIcon.enabled = true;
+            thinkCloudIcon.enabled = true;
+
+            taskIcon.sprite = tasksQueue[currentTaskIndex].iconSprite[Convert.ToInt32(taskSpriteId)];
+            thinkCloudIcon.sprite = gridHandler.thinkCloudIcons[Convert.ToInt32(taskSpriteId)];
+
+            taskSpriteId = !taskSpriteId;
+        }
+    }
 
     private IEnumerator TaskHandling()
     {
@@ -39,7 +67,8 @@ public class NPC : Interactable
 
         while (true)
         {
-			Vector2 direction = tasksQueue[currentTaskIndex].destination - position;
+            doSpriteSwapping = true;
+            Vector2 direction = tasksQueue[currentTaskIndex].destination - position;
 			direction.x = HarmClamp((int)direction.x);
 			direction.y = HarmClamp((int)direction.y);
 
@@ -114,8 +143,12 @@ public class NPC : Interactable
 			position.x <= tasksQueue[currentTaskIndex].destination.x + 1	&&
 			position.y >= tasksQueue[currentTaskIndex].destination.y - 1	&&
 			position.y <= tasksQueue[currentTaskIndex].destination.y + 1)
-		{
-			Debug.Log(this.gameObject.name + " dided a tasked");
+        {
+            taskIcon.enabled        = false;
+            thinkCloudIcon.enabled  = false;
+            doSpriteSwapping        = false;
+
+            Debug.Log(this.gameObject.name + " dided a tasked");
 			return true;
 		}
 
@@ -160,6 +193,8 @@ public class NPC : Interactable
         {
             hasLetter               = true;
             aGridObject.hasLetter   = false;
+
+            doSpriteSwapping        = true;
             StartCoroutine("TaskHandling");
         }
     }

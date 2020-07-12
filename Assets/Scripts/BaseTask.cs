@@ -10,7 +10,9 @@ public class BaseTask : MonoBehaviour
 
     public Vector2      destination;
     public bool         isActive			= false;
-    public bool         isTriggered         = false;      
+    public bool         isTriggered         = false;
+
+    public              Sprite[]            iconSprite;
 
     private void Awake()
 	{
