@@ -72,66 +72,87 @@ public class NPC : Interactable
 			direction.x = HarmClamp((int)direction.x);
 			direction.y = HarmClamp((int)direction.y);
 
-            #region Movement
-            if (position.x != tasksQueue[currentTaskIndex].destination.x)
-			{
-				if (!gridHandler.CellIsOccupied((int)(position.x + direction.x), (int)position.y))
-				{
-					if (MoveNPC(new Vector2(direction.x, 0)))
-					{
-						spriteId = !spriteId;
-					}
-				}
-				else
-				{
-					if (MoveNPC(new Vector2(0, direction.y)))
-					{
-						spriteFlip = !spriteFlip;
-					}
-					else if (MoveNPC(new Vector2(0, -direction.y)))
-					{
-						spriteFlip = !spriteFlip;
-					}
-				}
-			}
-
-			else if (position.y != tasksQueue[currentTaskIndex].destination.y)
-			{
-				if (!gridHandler.CellIsOccupied((int)position.x, (int)(position.y + direction.y)))
-				{
-					if (MoveNPC(new Vector2(0, direction.y)))
-					{
-						spriteFlip = !spriteFlip;
-					}
-				}
-				else 
-				{
-					if (MoveNPC(new Vector2(direction.x, 0)))
-					{
-						spriteId = !spriteId;
-					}
-					else if (MoveNPC(new Vector2(-direction.x, 0)))
-					{
-						spriteId = !spriteId;
-					}
-				}
-			}
-            #endregion
-
-            if (ArrivedAtTask() && tasksQueue[currentTaskIndex].isTriggered)
+            if (ArrivedAtTask())
             {
-                //go to next task
-                if (currentTaskIndex < tasksQueue.Count - 1)
-                {
-                    currentTaskIndex++;
-                    tasksQueue[currentTaskIndex].isTriggered = false;
-                }
-				else
+				if (tasksQueue[currentTaskIndex].isTriggered)
 				{
-                    //set target to bossman
-					Debug.Log("Done");
-                }
+					//go to next task
+					if (currentTaskIndex < tasksQueue.Count - 1)
+					{
+						currentTaskIndex++;
+						tasksQueue[currentTaskIndex].isTriggered = false;
+					}
+					else
+					{
+						//set target to bossman
+						Debug.Log("Done");
+					}
+				}
             }
+			else
+			{
+				#region Movement
+				if (position.x != tasksQueue[currentTaskIndex].destination.x)
+				{
+					if (!gridHandler.CellIsOccupied((int)(position.x + direction.x), (int)position.y))
+					{
+						if (MoveNPC(new Vector2(direction.x, 0)))
+						{
+							spriteId = !spriteId;
+						}
+					}
+					else
+					{
+						if (MoveNPC(new Vector2(0, direction.y)))
+						{
+							spriteFlip = !spriteFlip;
+						}
+						else if (MoveNPC(new Vector2(0, -direction.y)))
+						{
+							spriteFlip = !spriteFlip;
+						}
+						else if (MoveNPC(new Vector2(0, 1)))
+						{
+							spriteFlip = !spriteFlip;
+						}
+						else if (MoveNPC(new Vector2(0, -1)))
+						{
+							spriteFlip = !spriteFlip;
+						}
+					}
+				}
+
+				else if (position.y != tasksQueue[currentTaskIndex].destination.y)
+				{
+					if (!gridHandler.CellIsOccupied((int)position.x, (int)(position.y + direction.y)))
+					{
+						if (MoveNPC(new Vector2(0, direction.y)))
+						{
+							spriteFlip = !spriteFlip;
+						}
+					}
+					else 
+					{
+						if (MoveNPC(new Vector2(direction.x, 0)))
+						{
+							spriteId = !spriteId;
+						}
+						else if (MoveNPC(new Vector2(-direction.x, 0)))
+						{
+							spriteId = !spriteId;
+						}
+						else if (MoveNPC(new Vector2(1, 0)))
+						{
+							spriteId = !spriteId;
+						}
+						else if (MoveNPC(new Vector2(-1, 0)))
+						{
+							spriteId = !spriteId;
+						}
+					}
+				}
+				#endregion
+			}
 
             yield return new WaitForSeconds(0.5f);
         }
