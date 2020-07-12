@@ -75,10 +75,13 @@ public class NPC : Interactable
     {
         GetRandomTask();
 
+		Vector2 direction = GetLargestDirection();
+
         while (true)
         {
+        
+			Vector2 generalDirection = currentTask.destination - position;
             doSpriteSwapping = true;
-            Vector2 direction = GetLargestDirection();
 
             if (ArrivedAtTask())
             {
@@ -108,29 +111,32 @@ public class NPC : Interactable
 			{
 				#region Movement
 				
-				Vector2 largestDir = GetLargestDirection();
+				Vector2 largestDir	= GetLargestDirection();
+				Vector2 smallestDir	= GetSmallestDirection();
 
-				if (gridHandler.CellIsOccupied((int)(position.x + largestDir.x), (int)(position.y + largestDir.y)))
+				if (MoveNPC(largestDir, true))
+					direction = largestDir;
+				else if (MoveNPC(smallestDir, true))
 					direction = largestDir;
 
-				if (MoveNPC(direction, false))
+				else if (MoveNPC(direction, false))
 				{
 					DoAnimate();
 				}
-				else if (MoveNPC(RotateDirection(direction), true))
+				else if (MoveNPC(RotateDirection(direction), false))
 				{
-					direction = RotateDirection(direction);
+					generalDirection = RotateDirection(generalDirection);
 					DoAnimate();
 				}
-				else if (MoveNPC(RotateDirection(direction) * -1, true))
+				else if (MoveNPC(RotateDirection(direction) * -1, false))
 				{
-					direction = RotateDirection(direction) * -1;
+					generalDirection = RotateDirection(generalDirection) * -1;
 					DoAnimate();
 				}
 				else
 				{
-					MoveNPC(direction * -1, true);
-					direction = direction * -1;
+					MoveNPC(direction * -1, false);
+					generalDirection = generalDirection * -1;
 				}
 
 				#endregion
@@ -209,6 +215,20 @@ public class NPC : Interactable
 		Vector2 largest = currentTask.destination - position;
 
 		if (Mathf.Abs(largest.x) > Mathf.Abs(largest.y))
+		{
+			return new Vector2(HarmClamp((int)largest.x), 0);
+		}
+		else
+		{
+			return new Vector2(0, HarmClamp((int)largest.y));
+		}
+	}
+
+	private Vector2 GetSmallestDirection()
+	{
+		Vector2 largest = currentTask.destination - position;
+
+		if (Mathf.Abs(largest.x) < Mathf.Abs(largest.y))
 		{
 			return new Vector2(HarmClamp((int)largest.x), 0);
 		}
