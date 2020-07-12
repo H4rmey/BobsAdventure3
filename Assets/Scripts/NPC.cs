@@ -7,25 +7,33 @@ using UnityEngine.UI;
 
 public class NPC : Interactable
 {
-    public List<BaseTask>   tasksQueue;
-
     //sprites
     private     SpriteRenderer  spriteRenderer;
     public      Sprite[]        sprites;
-    private     bool            spriteId    = false;
-    private     bool            spriteFlip  = false;
+    private     bool            spriteId			= false;
+    private     bool            spriteFlip			= false;
     public      float           spriteSwapTime;
 
-    private     float           timer             = 0;
-    private     bool            doSpriteSwapping   = false;
-    private     bool            taskSpriteId       = false;
+	[Header("Task Settings")]
+	public		BaseTask		firstTaskPref;
+	public		BaseTask		secondTaskPref;
+	[Range(0, 100)]
+	public		float			firstPrefChance		= 30;
+	[Range(0, 100)]
+	public		float			secondPrefChance	= 20;
+	public		BaseTask		currentTask;
+	public		int				amountOfTaskToDo	= 5;
+
+    private     float           timer				= 0;
+    private     bool            doSpriteSwapping	= false;
+    private     bool            taskSpriteId		= false;
 
     private     Image           taskIcon;
     private     Image           thinkCloudIcon;
 
     private		TaskHandler		taskHandler;
 
-	private		int				currentTaskIndex;
+	private		int				amountTasksDone		= 0;
 
 	public override void Initialize()
 	{
@@ -52,7 +60,7 @@ public class NPC : Interactable
             taskIcon.enabled = true;
             thinkCloudIcon.enabled = true;
 
-            taskIcon.sprite = tasksQueue[currentTaskIndex].iconSprite[Convert.ToInt32(taskSpriteId)];
+            taskIcon.sprite = currentTask.iconSprite[Convert.ToInt32(taskSpriteId)];
             thinkCloudIcon.sprite = gridHandler.thinkCloudIcons[Convert.ToInt32(taskSpriteId)];
 
             taskSpriteId = !taskSpriteId;
@@ -61,26 +69,25 @@ public class NPC : Interactable
 
     private IEnumerator TaskHandling()
     {
-        GetRandomTasks();
-        currentTaskIndex = 0;
-        tasksQueue[currentTaskIndex].isTriggered = false;
+        GetRandomTask();
 
         while (true)
         {
             doSpriteSwapping = true;
-            Vector2 direction = tasksQueue[currentTaskIndex].destination - position;
+            Vector2 direction = currentTask.destination - position;
 			direction.x = HarmClamp((int)direction.x);
 			direction.y = HarmClamp((int)direction.y);
 
             if (ArrivedAtTask())
             {
-				if (tasksQueue[currentTaskIndex].isTriggered)
+				if (currentTask.isTriggered)
 				{
+					++amountTasksDone;
+
 					//go to next task
-					if (currentTaskIndex < tasksQueue.Count - 1)
+					if (amountTasksDone < amountOfTaskToDo)
 					{
-						currentTaskIndex++;
-						tasksQueue[currentTaskIndex].isTriggered = false;
+						GetRandomTask();
 					}
 					else
 					{
@@ -92,7 +99,7 @@ public class NPC : Interactable
 			else
 			{
 				#region Movement
-				if (position.x != tasksQueue[currentTaskIndex].destination.x)
+				if (position.x != currentTask.destination.x)
 				{
 					if (!gridHandler.CellIsOccupied((int)(position.x + direction.x), (int)position.y))
 					{
@@ -122,7 +129,7 @@ public class NPC : Interactable
 					}
 				}
 
-				else if (position.y != tasksQueue[currentTaskIndex].destination.y)
+				else if (position.y != currentTask.destination.y)
 				{
 					if (!gridHandler.CellIsOccupied((int)position.x, (int)(position.y + direction.y)))
 					{
@@ -160,10 +167,10 @@ public class NPC : Interactable
 
 	private bool ArrivedAtTask()
 	{
-		if (position.x >= tasksQueue[currentTaskIndex].destination.x - 1	&&
-			position.x <= tasksQueue[currentTaskIndex].destination.x + 1	&&
-			position.y >= tasksQueue[currentTaskIndex].destination.y - 1	&&
-			position.y <= tasksQueue[currentTaskIndex].destination.y + 1)
+		if (position.x >= currentTask.destination.x - 1	&&
+			position.x <= currentTask.destination.x + 1	&&
+			position.y >= currentTask.destination.y - 1	&&
+			position.y <= currentTask.destination.y + 1)
         {
             taskIcon.enabled        = false;
             thinkCloudIcon.enabled  = false;
@@ -200,12 +207,27 @@ public class NPC : Interactable
         return 0;
     }
 
-    private void GetRandomTasks()
+    private void GetRandomTask()
     {
-        for (int i = 0; i < 6; i++)
-        {
-            tasksQueue.Add(taskHandler.GetRandomTask());
-        }
+		BaseTask newTask;
+
+		do
+		{
+			float chance = UnityEngine.Random.Range(0, 100);
+
+			if (chance < firstPrefChance)
+				newTask = firstTaskPref;
+			else if (chance < firstPrefChance + secondPrefChance)
+				newTask = secondTaskPref;
+			else
+				newTask = taskHandler.GetRandomTask();
+
+			if (currentTask == default)
+				break;
+		} while (newTask.destination == currentTask.destination);
+
+		currentTask = newTask;
+        currentTask.isTriggered = false;
     }
 
     public override void Interact(GridObject aGridObject)
