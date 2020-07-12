@@ -396,7 +396,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 46
+    m_FontSize: 44
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -413,7 +413,8 @@ MonoBehaviour:
     thought of a genius plan. He gives the letter to one of his colleagues, who then
     give the letter to his boss, problem solved! But what Bob didn\u2019t realize,
     is that his colleagues are distracted very easily. Now it\u2019s Bobs task to
-    make sure his colleagues do not mess up and deliver the letter for the boss."
+    make sure his colleagues do not mess up and deliver the letter for the boss. 
+    \n\nMusic By: bensound.com"
 --- !u!222 &584307846
 CanvasRenderer:
   m_ObjectHideFlags: 0

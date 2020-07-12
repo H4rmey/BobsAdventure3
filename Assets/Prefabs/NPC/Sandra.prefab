@@ -331,7 +331,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 0e062af81ca513d469f5c8068a4fbf6d, type: 3}
   - {fileID: 21300000, guid: 4fe7d2239864a1d418682cacb10925a4, type: 3}
-  spriteSwapTime: 0
+  spriteSwapTime: 0.5
   firstTaskPref: {fileID: 0}
   secondTaskPref: {fileID: 0}
   firstPrefChance: 20
