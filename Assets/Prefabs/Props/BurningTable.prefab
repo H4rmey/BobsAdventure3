@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: -1559808853
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f791fcc86e4fd9f4daba21348306777c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f7602854e983ac944990cccd203b3f20, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,8 +93,9 @@ GameObject:
   - component: {fileID: 5062815057081362842}
   - component: {fileID: 4640078918277669270}
   - component: {fileID: 4943883826980527060}
+  - component: {fileID: 2039319905536331395}
   m_Layer: 0
-  m_Name: CoffeeMachine
+  m_Name: BurningTable
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,3 +177,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   gridHandler: {fileID: 0}
+  hasLetter: 0
+  objName: Table
+  respone: noresponse
+  isItem: 0
+  itemItIs: 0
+  requiresItem: 1
+  itemItRequires: 1
+  task: {fileID: 2039319905536331395}
+  isTask: 1
+--- !u!114 &2039319905536331395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6489837636492172424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 762978d790457914a8a081d0eb62b220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destinationIsSelf: 1
+  destination: {x: 0, y: 0}
+  isActive: 0
+  isTriggered: 1
+  isFinalTask: 0
+  iconSprite:
+  - {fileID: 21300000, guid: 762fb94c49ca0a74bac7a2bcbd8b6f9c, type: 3}
+  - {fileID: 21300000, guid: fc5a99de7b1f6a04d97a878cb0ada587, type: 3}
+  worldSprite:
+  - {fileID: 21300000, guid: f7602854e983ac944990cccd203b3f20, type: 3}
+  - {fileID: 21300000, guid: 5d7b7add1cf0084449383c136189f3f0, type: 3}

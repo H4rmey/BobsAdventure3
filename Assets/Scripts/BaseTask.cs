@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class BaseTask : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class BaseTask : MonoBehaviour
 
     public              Sprite[]            iconSprite;
 
+    public              Sprite[]            worldSprite;
+
     private void Awake()
 	{
 		if (destinationIsSelf)
@@ -23,4 +26,9 @@ public class BaseTask : MonoBehaviour
 			destination = transform.position / GridHandler.cellSize;
 		}
 	}
+
+    private void Update()
+    {
+        GetComponentInChildren<SpriteRenderer>().sprite = worldSprite[Convert.ToInt32(isTriggered)];
+    }
 }

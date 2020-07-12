@@ -14,10 +14,10 @@ public class GridHandler : MonoBehaviour
     public          Sprite[]    thinkCloudIcons;
 
     private         float       timer;
-    public          float       maxGameLength;
+    //public          float       maxGameLength;
+    [HideInInspector]
     public          bool        gameEnds = false;
     private         int         score;
-    [HideInInspector]
     public          int         stepAmount;
 
     private void Update()

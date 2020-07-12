@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4943883826980527060}
   - component: {fileID: 2039319905536331395}
   m_Layer: 0
-  m_Name: PhoneRings
+  m_Name: FaxRings
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,9 +178,14 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   gridHandler: {fileID: 0}
   hasLetter: 0
-  objName: noname
+  objName: Fax
   respone: noresponse
+  isItem: 0
+  itemItIs: 0
+  requiresItem: 0
+  itemItRequires: 0
   task: {fileID: 0}
+  isTask: 0
 --- !u!114 &2039319905536331395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,3 +202,6 @@ MonoBehaviour:
   destination: {x: 0, y: 0}
   isActive: 0
   isTriggered: 1
+  isFinalTask: 0
+  iconSprite: []
+  worldSprite: []
