@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GridHandler : MonoBehaviour
 {
@@ -11,6 +12,25 @@ public class GridHandler : MonoBehaviour
 
 	public			GridRow[]	grid		= new GridRow[amountRows];
     public          Sprite[]    thinkCloudIcons;
+
+    public          float       timer;
+    public          bool        gameEnds = false;
+    private         int         score;
+    [HideInInspector]
+    public          int         stepAmount;
+
+    private void Update()
+    {
+        timer += Time.deltaTime;
+
+        if (gameEnds)
+        {
+            score = (int)(10*timer / stepAmount);
+            PlayerPrefs.SetInt("PlayerScore", score);
+
+            SceneManager.LoadScene("GameOver");
+        }
+    }
 
     private void Awake()
     {

@@ -37,7 +37,8 @@ public class Player : GridObject
 
 	public	ItemObject	currentItem			= ItemObject.NONE;
 
-	public override void Initialize()
+
+    public override void Initialize()
 	{
 		base.Initialize();
 
@@ -128,6 +129,8 @@ public class Player : GridObject
             spriteId                = !spriteId;
             spriteRenderer.sprite   = sprites[Convert.ToInt32(spriteId)];
             spriteRenderer.flipX    = spriteFlip;
+
+            gridHandler.stepAmount++;
         }
 
 
