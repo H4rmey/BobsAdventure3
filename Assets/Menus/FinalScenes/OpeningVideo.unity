@@ -157,7 +157,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
   m_RenderMode: 0
-  m_AspectRatio: 2
+  m_AspectRatio: 3
   m_DataSource: 0
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
@@ -202,6 +202,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   videoDuration: 15.5
   scene: MainMenu
+  howToPlay: 0
+  scenes: []
 --- !u!82 &1521556339
 AudioSource:
   m_ObjectHideFlags: 0

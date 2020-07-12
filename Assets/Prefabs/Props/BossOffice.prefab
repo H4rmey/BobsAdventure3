@@ -205,8 +205,8 @@ MonoBehaviour:
   isTriggered: 1
   isFinalTask: 1
   iconSprite:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 165cbbcba529b144da9ab7df61d0e420, type: 3}
+  - {fileID: 21300000, guid: 7ad7f61a03710e3458d3245b6219f06a, type: 3}
   worldSprite:
   - {fileID: 21300000, guid: 7a5567ce26cd4b14ba431b6565167a6b, type: 3}
   - {fileID: 21300000, guid: 7a5567ce26cd4b14ba431b6565167a6b, type: 3}
@@ -222,5 +222,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c761a92ba7700d4991c3121942cb164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationTime: 0.6
-  rotationAmount: -8

@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Menus/FinalScenes/OpeningVideo.unity
+    guid: 89af7c1e4b40c934d94edc0ea9de46f9
   - enabled: 1
     path: Assets/Menus/FinalScenes/MainMenu.unity
     guid: 9bfb77f19ef7b9e4b95b22abfad3a1ae

@@ -115,23 +115,29 @@ public class NPC : Interactable
 				Vector2 smallestDir	= GetSmallestDirection();
 
 				if (MoveNPC(largestDir, true))
-					direction = largestDir;
+                {
+                    direction = largestDir;
+                    DoAnimate(direction);
+                }
 				else if (MoveNPC(smallestDir, true))
-					direction = largestDir;
+                {
+                    direction = largestDir;
+                    DoAnimate(direction);
+                }
 
 				else if (MoveNPC(direction, false))
 				{
-					DoAnimate();
+					DoAnimate(direction);
 				}
 				else if (MoveNPC(RotateDirection(direction), false))
 				{
 					generalDirection = RotateDirection(generalDirection);
-					DoAnimate();
+					DoAnimate(direction);
 				}
 				else if (MoveNPC(RotateDirection(direction) * -1, false))
 				{
 					generalDirection = RotateDirection(generalDirection) * -1;
-					DoAnimate();
+					DoAnimate(direction);
 				}
 				else
 				{
@@ -146,10 +152,29 @@ public class NPC : Interactable
         }
     }
 
-	private void DoAnimate()
+	private void DoAnimate(Vector2 aDir)
 	{
-
-	}
+        if (aDir.x < 0)
+        {
+            spriteId = !spriteId;
+            spriteFlip = true;
+        }
+        if (aDir.x > 0)
+        {
+            spriteId = !spriteId;
+            spriteFlip = false;
+        }
+        if (aDir.y < 0)
+        {
+            spriteId = !spriteId;
+            spriteFlip = !spriteFlip;
+        }
+        if (aDir.y > 0)
+        {
+            spriteId = !spriteId;
+            spriteFlip = !spriteFlip;
+        }
+    }
 
 	private bool ArrivedAtTask()
 	{

@@ -183,8 +183,8 @@ MonoBehaviour:
   respone: noresponse
   isItem: 0
   itemItIs: 0
-  requiresItem: 1
-  itemItRequires: 2
+  requiresItem: 0
+  itemItRequires: 0
   task: {fileID: 2039319905536331395}
   isTask: 1
 --- !u!114 &2039319905536331395
@@ -222,5 +222,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c761a92ba7700d4991c3121942cb164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationTime: 0.6
-  rotationAmount: -8
