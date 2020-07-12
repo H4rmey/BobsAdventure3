@@ -13,7 +13,8 @@ public class GridHandler : MonoBehaviour
 	public			GridRow[]	grid		= new GridRow[amountRows];
     public          Sprite[]    thinkCloudIcons;
 
-    public          float       timer;
+    private         float       timer;
+    public          float       maxGameLength;
     public          bool        gameEnds = false;
     private         int         score;
     [HideInInspector]
@@ -30,6 +31,9 @@ public class GridHandler : MonoBehaviour
 
             SceneManager.LoadScene("GameOver");
         }
+
+        //if (timer > maxGameLength)
+        //    gameEnds = true;
     }
 
     private void Awake()

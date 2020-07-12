@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Menus/FinalScenes/MainMenu.unity
     guid: 9bfb77f19ef7b9e4b95b22abfad3a1ae
-  - enabled: 1
+  - enabled: 0
     path: Assets/Menus/FinalScenes/Game.unity
     guid: af77a2adf02cc6d4494c12d8604bd26e
   - enabled: 1
@@ -17,7 +17,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Menus/FinalScenes/Lore.unity
     guid: 0130594417c38764e9166e941d97e154
-  - enabled: 1
+  - enabled: 0
     path: Assets/Menus/FinalScenes/ScoreBoard.unity
     guid: 527214601e6979c46b690ef244c4e096
+  - enabled: 1
+    path: Assets/Scenes/Level_03.unity
+    guid: 69a75145464d0a04cb6270a7c32067ee
+  - enabled: 1
+    path: Assets/Scenes/Level_02.unity
+    guid: 3ce05f2709b160648ae17f7988954d05
+  - enabled: 1
+    path: Assets/Scenes/Level_01.unity
+    guid: fa7cc57d55d176847af3abedf519ef56
   m_configObjects: {}
