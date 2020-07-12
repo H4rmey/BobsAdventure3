@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 4640078918277669270}
   - component: {fileID: 4943883826980527060}
   - component: {fileID: 2039319905536331395}
+  - component: {fileID: -2785054551868893521}
   m_Layer: 0
   m_Name: FaxRings
   m_TagString: Interactable
@@ -205,3 +206,17 @@ MonoBehaviour:
   isFinalTask: 0
   iconSprite: []
   worldSprite: []
+--- !u!114 &-2785054551868893521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6489837636492172424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c761a92ba7700d4991c3121942cb164, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationTime: 0.6
+  rotationAmount: -8
