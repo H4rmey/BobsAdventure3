@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class NPC : Interactable
 {
@@ -14,7 +15,10 @@ public class NPC : Interactable
     private     bool            spriteId    = false;
     private     bool            spriteFlip  = false;
 
-	private		TaskHandler		taskHandler;
+    public      Image           taskIcon;
+    public      Image           thinkCloudIcon;
+
+    private		TaskHandler		taskHandler;
 
 	private		int				currentTaskIndex;
 
@@ -39,7 +43,8 @@ public class NPC : Interactable
 			direction.x = HarmClamp((int)direction.x);
 			direction.y = HarmClamp((int)direction.y);
 
-			if (position.x != tasksQueue[currentTaskIndex].destination.x)
+            #region Movement
+            if (position.x != tasksQueue[currentTaskIndex].destination.x)
 			{
 				if (!gridHandler.CellIsOccupied((int)(position.x + direction.x), (int)position.y))
 				{
@@ -82,8 +87,9 @@ public class NPC : Interactable
 					}
 				}
 			}
+            #endregion
 
-			if (ArrivedAtTask() && tasksQueue[currentTaskIndex].isTriggered)
+            if (ArrivedAtTask() && tasksQueue[currentTaskIndex].isTriggered)
             {
                 //go to next task
                 if (currentTaskIndex < tasksQueue.Count - 1)
@@ -93,6 +99,7 @@ public class NPC : Interactable
                 }
 				else
 				{
+                    //set target to bossman
 					Debug.Log("Done");
                 }
             }

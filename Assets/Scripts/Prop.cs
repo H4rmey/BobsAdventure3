@@ -18,6 +18,8 @@ public class Prop : Interactable
 
 	private	Player		player;
 
+    public  Sprite[]    iconSprite;
+
     public override void Initialize()
     {
         base.Initialize();
