@@ -12,7 +12,7 @@ public class NPC : Interactable
     public      Sprite[]        sprites;
     private     bool            spriteId			= false;
     private     bool            spriteFlip			= false;
-    public      float           spriteSwapTime;
+    public      float           spriteSwapTime      = 0.5f;
 
 	[Header("Task Settings")]
 	public		BaseTask		firstTaskPref;

@@ -316,6 +316,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   videoDuration: 6
   scene: Game
+  howToPlay: 1
+  scenes:
+  - Level_01
+  - Level_02
 --- !u!4 &1904862119
 Transform:
   m_ObjectHideFlags: 0

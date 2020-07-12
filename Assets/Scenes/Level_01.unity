@@ -1849,26 +1849,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &904030258 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 708982060481782130, guid: d7b8d148814586640bd9da343e3eef22,
-    type: 3}
-  m_PrefabInstance: {fileID: 1461750530}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &904030259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 904030258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53da5db51d44b674aba7dc192c9eac6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  taskList: []
-  finalTask: {fileID: 620978330}
 --- !u!1 &913804141
 GameObject:
   m_ObjectHideFlags: 0
@@ -3254,6 +3234,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 904030259, guid: d7b8d148814586640bd9da343e3eef22, type: 3}
+      propertyPath: finalTask
+      value: 
+      objectReference: {fileID: 620978330}
+    - target: {fileID: 904030260, guid: d7b8d148814586640bd9da343e3eef22, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 72d816cee1a67bf4b8082b8653af1f9d, type: 3}
     - target: {fileID: 708982060481782128, guid: d7b8d148814586640bd9da343e3eef22,
         type: 3}
       propertyPath: m_LocalPosition.x
