@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Prop : Interactable
 {
-	public	BaseTask	task;
 
 	[Header("Is Item Zooi")]
 	public	bool		isItem;
@@ -13,6 +12,10 @@ public class Prop : Interactable
 	[Header("Requires Item Zooi")]
 	public	bool		requiresItem;
 	public	ItemObject	itemItRequires;
+
+	[Header("Task Zooi")]
+	public	BaseTask	task;
+	public	bool		isTask			= false;
 
     private TaskHandler taskHandler;
 
@@ -29,6 +32,7 @@ public class Prop : Interactable
         {
             taskHandler = GameObject.Find("Game Manager").GetComponent<TaskHandler>();
             taskHandler.taskList.Add(task);
+			isTask		= true;
         }
     }
 
@@ -37,13 +41,18 @@ public class Prop : Interactable
 		if (requiresItem && player.currentItem != itemItRequires)
 			return;
 
-		task.isActive		= false;
-        task.isTriggered	= true;
+		if (isTask)
+		{
+			task.isActive		= false;
+			task.isTriggered	= true;
+		}
 
 		if (isItem)
 		{
-			player.currentItem = itemItIs;
-			Destroy(this.gameObject);
+			if (player.GiveItem(itemItIs))
+			{
+				Destroy(this.gameObject);
+			}
 		}
 
         Debug.Log("interacted with: " + gameObject.name);
