@@ -153,12 +153,8 @@ public class Player : GridObject
                 return;
 			}
         }
-        else
-        {
-            interactionText.text = "";
-        }
-
-        nearestInteractable = default;
+        
+		ResetInteraction();
 	}
 
 	private void pInteract()
@@ -166,6 +162,7 @@ public class Player : GridObject
 		if (nearestInteractable == default) return;
 
 		nearestInteractable.GetComponent<Interactable>().Interact(this);
+		ResetInteraction();
     }
 
     private void pInteractText(GridObject aGridObject)
@@ -181,12 +178,67 @@ public class Player : GridObject
         }
     }
 
+	public void ResetInteraction()
+	{
+		interactionText.text = "";
+        nearestInteractable = default;
+	}
+
 	#endregion
+
+	public bool GiveItem(ItemObject aItem)
+	{
+		if (currentItem != ItemObject.NONE)
+			DropCurrentItem();
+
+		currentItem = aItem;
+
+		return true;
+	}
+
+	private bool DropCurrentItem()
+	{
+		GameObject itemToDrop = GetItemObject();
+		if (itemToDrop == null)
+			return false;
+
+		if (DropItem(position.x,		position.y - 1,	itemToDrop)	||
+			DropItem(position.x + 1,	position.y,		itemToDrop)	||
+			DropItem(position.x,		position.y + 1,	itemToDrop)	||
+			DropItem(position.x - 1,	position.y,		itemToDrop)	)
+			return true;
+
+		return false;
+	}
+
+	private bool DropItem(float aX, float aY, GameObject aItemToDrop)
+	{
+		if (gridHandler.CellIsOccupied((int)aX, (int)aY)	||
+			!gridHandler.InGridBounds((int)aX, (int)aY)		)
+			return false;
+
+		GameObject droppedItem = (GameObject)Instantiate(aItemToDrop, new Vector3(aX, aY, 0), Quaternion.identity);
+		return true;
+	}
+
+	private GameObject GetItemObject()
+	{
+		switch(currentItem)
+		{
+			case ItemObject.FIRE_EXTINGUISHER:
+				return (GameObject)Resources.Load("Fire_Extinguisher");
+			case ItemObject.GOLDEN_PEN:
+				return (GameObject)Resources.Load("Golden_Pen");
+
+			default:
+				return null;
+		}
+	}
 }
 
 public enum ItemObject
 {
 	NONE,
 	FIRE_EXTINGUISHER,
-	PEN
+	GOLDEN_PEN
 }
