@@ -37,6 +37,8 @@ public class NPC : Interactable
 
 	private		bool			isDoingFinalTask	= false;
 
+	private		Vector2			previousPosition;
+
 	public override void Initialize()
 	{
 		base.Initialize();
@@ -76,9 +78,7 @@ public class NPC : Interactable
         while (true)
         {
             doSpriteSwapping = true;
-            Vector2 direction = currentTask.destination - position;
-			direction.x = HarmClamp((int)direction.x);
-			direction.y = HarmClamp((int)direction.y);
+            Vector2 direction = GetLargestDirection();
 
             if (ArrivedAtTask())
             {
@@ -107,71 +107,43 @@ public class NPC : Interactable
 			else
 			{
 				#region Movement
-				if (position.x != currentTask.destination.x)
+				
+				Vector2 largestDir = GetLargestDirection();
+
+				if (gridHandler.CellIsOccupied((int)(position.x + largestDir.x), (int)(position.y + largestDir.y)))
+					direction = largestDir;
+
+				if (MoveNPC(direction, false))
 				{
-					if (!gridHandler.CellIsOccupied((int)(position.x + direction.x), (int)position.y))
-					{
-						if (MoveNPC(new Vector2(direction.x, 0)))
-						{
-							spriteId = !spriteId;
-						}
-					}
-					else
-					{
-						if (MoveNPC(new Vector2(0, direction.y)))
-						{
-							spriteFlip = !spriteFlip;
-						}
-						else if (MoveNPC(new Vector2(0, -direction.y)))
-						{
-							spriteFlip = !spriteFlip;
-						}
-						else if (MoveNPC(new Vector2(0, 1)))
-						{
-							spriteFlip = !spriteFlip;
-						}
-						else if (MoveNPC(new Vector2(0, -1)))
-						{
-							spriteFlip = !spriteFlip;
-						}
-					}
+					DoAnimate();
+				}
+				else if (MoveNPC(RotateDirection(direction), true))
+				{
+					direction = RotateDirection(direction);
+					DoAnimate();
+				}
+				else if (MoveNPC(RotateDirection(direction) * -1, true))
+				{
+					direction = RotateDirection(direction) * -1;
+					DoAnimate();
+				}
+				else
+				{
+					MoveNPC(direction * -1, true);
+					direction = direction * -1;
 				}
 
-				else if (position.y != currentTask.destination.y)
-				{
-					if (!gridHandler.CellIsOccupied((int)position.x, (int)(position.y + direction.y)))
-					{
-						if (MoveNPC(new Vector2(0, direction.y)))
-						{
-							spriteFlip = !spriteFlip;
-						}
-					}
-					else 
-					{
-						if (MoveNPC(new Vector2(direction.x, 0)))
-						{
-							spriteId = !spriteId;
-						}
-						else if (MoveNPC(new Vector2(-direction.x, 0)))
-						{
-							spriteId = !spriteId;
-						}
-						else if (MoveNPC(new Vector2(1, 0)))
-						{
-							spriteId = !spriteId;
-						}
-						else if (MoveNPC(new Vector2(-1, 0)))
-						{
-							spriteId = !spriteId;
-						}
-					}
-				}
 				#endregion
 			}
 
             yield return new WaitForSeconds(0.5f);
         }
     }
+
+	private void DoAnimate()
+	{
+
+	}
 
 	private bool ArrivedAtTask()
 	{
@@ -210,11 +182,18 @@ public class NPC : Interactable
 		return false;
 	}
 
-    private bool MoveNPC(Vector2 aDirection)
+    private bool MoveNPC(Vector2 aDirection, bool checkPrevPos)
     {
+		if (checkPrevPos && previousPosition != null && position + aDirection == previousPosition)
+			return false;
+
+		Vector2	tempSavedPosition = position;
+
         if (gridHandler.MoveCell((int)position.x, (int)position.y, (int)(position.x + aDirection.x), (int)(position.y + aDirection.y)))
         {
-            position += aDirection;
+			previousPosition = tempSavedPosition;
+
+			position += aDirection;
 
             spriteRenderer          = gridHandler.GetCell((int)position.x, (int)position.y).GetComponentInChildren<SpriteRenderer>();
             spriteRenderer.sprite   = sprites[Convert.ToInt32(spriteId)];
@@ -224,6 +203,27 @@ public class NPC : Interactable
         }
         return false;
     }
+
+	private Vector2 GetLargestDirection()
+	{
+		Vector2 largest = currentTask.destination - position;
+
+		if (Mathf.Abs(largest.x) > Mathf.Abs(largest.y))
+		{
+			return new Vector2(HarmClamp((int)largest.x), 0);
+		}
+		else
+		{
+			return new Vector2(0, HarmClamp((int)largest.y));
+		}
+	}
+
+
+	private Vector2 RotateDirection(Vector2 aDirection)
+	{
+		float tempX = aDirection.x;
+		return new Vector2(aDirection.y, tempX);
+	}
 
     private int HarmClamp(int value)
     {
