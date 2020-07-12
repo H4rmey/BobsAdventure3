@@ -25,8 +25,6 @@ public class NPC : Interactable
 		taskHandler = gridHandler.GetComponent<TaskHandler>();
 
 		GetRandomTasks();
-
-        StartCoroutine("TaskHandling");
 	}
 
     public override GridObjectType GetGridType() { return GridObjectType.NPC; }
@@ -101,37 +99,9 @@ public class NPC : Interactable
 						spriteId = !spriteId;
 					}
 				}
-
-				//if (!gridHandler.CellIsOccupied((int)(position.x - direction.x), (int)position.y))
-				//{
-				//	spriteId = !spriteId;
-				//	MoveNPC(new Vector2(-direction.x, 0));
-				//}
-				//else if (!gridHandler.CellIsOccupied((int)position.x, (int)(position.y - direction.y)))
-				//{
-				//	spriteFlip = !spriteFlip;
-				//	MoveNPC(new Vector2(0, -direction.y));
-				//}
 			}
 
-            //if (position.x != tasksQueue[currentTaskIndex].destination.x)
-            //{
-            //    int directionX = HarmClamp((int)tasksQueue[currentTaskIndex].destination.x - (int)position.x);
-
-            //    spriteId = !spriteId;
-
-            //    MoveNPC(new Vector2(directionX, 0));
-            //}
-            //else if (position.y != tasksQueue[currentTaskIndex].destination.y)
-            //{
-            //    int directionY = HarmClamp((int)tasksQueue[currentTaskIndex].destination.y - (int)position.y);
-
-            //    spriteFlip = !spriteFlip;
-
-            //    MoveNPC(new Vector2(0, directionY));
-            //}
-
-			if (ArrivedAtTask())
+			if (ArrivedAtTask() && tasksQueue[currentTaskIndex].isActive)
 			{
 				if (currentTaskIndex < tasksQueue.Count - 1)
 				{
@@ -193,18 +163,13 @@ public class NPC : Interactable
         }
     }
 
-    private void StartTasksThings()
-    {
-        Debug.Log("Eef to the freef, wob wob");
-    }
-
     public override void Interact(GridObject aGridObject)
     {
         if (!hasLetter && aGridObject.hasLetter)
         {
             hasLetter               = true;
             aGridObject.hasLetter   = false;
-            StartTasksThings();
+            StartCoroutine("TaskHandling");
         }
     }
 }

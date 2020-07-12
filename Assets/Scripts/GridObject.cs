@@ -11,6 +11,9 @@ public class GridObject : MonoBehaviour
     [HideInInspector]
     public  bool            hasLetter = false;
 
+    public string objName = "noname";
+    public string respone = "noresponse";
+
     private void Start()
 	{
 		Initialize();

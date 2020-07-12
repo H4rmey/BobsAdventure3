@@ -146,15 +146,7 @@ public class Player : GridObject
 			{
 				nearestInteractable = objectNextPlayer;
 
-                //Interaction Text
-                if (hasLetter && objectNextPlayer.GetComponent<GridObject>().GetGridType() == GridObjectType.NPC)
-                {
-                    interactionText.text = "Give Letter: <E>";
-                }
-                else
-                {
-                    interactionText.text = "Interact with " + objectNextPlayer.name + ": <E>"; //TODO: update name giving
-                }
+                pInteractText(objectNextPlayer.GetComponent<GridObject>());
 
                 return;
 			}
@@ -172,6 +164,19 @@ public class Player : GridObject
 		if (nearestInteractable == default) return;
 
 		nearestInteractable.GetComponent<Interactable>().Interact(this);
+    }
+
+    private void pInteractText(GridObject aGridObject)
+    {
+        //Interaction Text
+        if (hasLetter && aGridObject.GetGridType() == GridObjectType.NPC)
+        {
+            interactionText.text = "Give Letter: <E>";
+        }
+        else
+        {
+            interactionText.text = "Interact with " + aGridObject.objName + ": <E>"; //TODO: update name giving
+        }
     }
 
 	#endregion
